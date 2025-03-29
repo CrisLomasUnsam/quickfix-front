@@ -20,7 +20,11 @@ dev/QF-*
 
 ### Si el puerto queda tomado aunque maten el proceso:
 
-![image](https://github.com/user-attachments/assets/67763dbc-1038-4af9-a091-229667186afb)
+```
+En windows:
+netstat -ano | findstr :5173
+tskill <el PID devuelvo por la sentencia anterior>
+```
 
 ### Múltples README.md
 
