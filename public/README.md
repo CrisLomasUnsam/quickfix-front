@@ -1,0 +1,2 @@
+En public van todos los assets, como imágenes, íconos y fuentes.
+La ventaja que tiene de almacenarlos acá, es que puede referenciarse desde cualquier directorio como /img/imagen.jpg (siendo img = public/img)

@@ -1,0 +1,10 @@
+:root {
+    --primary-color: #7558c4;
+    --error-color: #d32f2f;
+    --background-color: #eee;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
