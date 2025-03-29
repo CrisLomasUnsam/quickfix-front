@@ -21,3 +21,7 @@ dev/QF-*
 ### Si el puerto queda tomado aunque maten el proceso:
 
 ![image](https://github.com/user-attachments/assets/67763dbc-1038-4af9-a091-229667186afb)
+
+### Múltples README.md
+
+Una vez que creen un archivo en alguna de las carpetas que tengan README, pueden eliminar ese archivo que solamente mantenía la estructura en git (no importa si dos personas lo borran en diferentes commits)
