@@ -11,5 +11,13 @@ git config --global core.ignorecase false
 
 dev/QF-*
 
-El nombre de la rama tiene que incluir el identificador único de la tarjeta para que la enlace automáticamente.
-No va a enlazar la tarjeta hasta que no pusheen la rama al repositorio.
+> [!IMPORTANT]
+> El nombre de la rama tiene que incluir el identificador único de la tarjeta para que la enlace automáticamente.
+> No va a enlazar la tarjeta hasta que no pusheen la rama al repositorio.
+
+
+## Otros
+
+### Si el puerto queda tomado aunque maten el proceso:
+
+![image](https://github.com/user-attachments/assets/67763dbc-1038-4af9-a091-229667186afb)
