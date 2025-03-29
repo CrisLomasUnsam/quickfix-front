@@ -1,9 +1,17 @@
+import { RouterProvider } from 'react-router'
 import './styles/globals.css'
+import { router } from './router/router'
+import { AuthGuard } from './router/guards/AuthGuard'
 
 function App() {
-
   //Router
-  return <h1>Quick Fix</h1>
+  return (
+    <>
+      <AuthGuard>
+        <RouterProvider router={router} />
+      </AuthGuard>
+    </>
+  )
 }
 
 export default App
