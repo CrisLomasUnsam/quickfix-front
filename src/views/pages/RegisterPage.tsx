@@ -1,5 +1,3 @@
-import { styled } from '@mui/material/styles'
-import Container from '@mui/material/Container'
 import {
   Button,
   FormControl,
@@ -15,22 +13,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import dayjs from 'dayjs'
-
-const FormContainer = styled(Container)(() => ({
-  display: 'flex',
-  border: '1px solid #000',
-  borderRadius: '20px',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  maxHeight: '100vhd',
-  width: '93vw',
-  backgroundColor: '#D9D9D9',
-  gap: '1rem',
-  padding: '1rem',
-  overflowY: 'auto',
-  overflowX: 'hidden',
-}))
+import { FormContainer } from '../components/containers/FormContainer'
 
 function RegisterPage() {
   type FormData = {
