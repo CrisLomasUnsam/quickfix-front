@@ -5,7 +5,6 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  TextField,
   Typography,
 } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
@@ -14,6 +13,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/L
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import dayjs from 'dayjs'
 import { FormContainer } from '../components/containers/FormContainer'
+import { StyledTextFieldInput } from '../components/inputs/StyledTextFieldInput'
 
 function RegisterPage() {
   type FormData = {
@@ -24,7 +24,7 @@ function RegisterPage() {
     lastName: string
     birthDate: string | null
     dni: string
-    genero: string
+    genre: string
     domicilio: string
   }
 
@@ -49,7 +49,7 @@ function RegisterPage() {
       lastName: '',
       birthDate: null,
       dni: '',
-      genero: '',
+      genre: '',
       domicilio: '',
     },
   })
@@ -85,17 +85,13 @@ function RegisterPage() {
               }}
               defaultValue=""
               render={({ field }) => (
-                <TextField
+                <StyledTextFieldInput
                   {...field}
                   type="email"
                   label="Email"
                   variant="outlined"
                   error={!!errors.email}
                   helperText={errors.email?.message}
-                  sx={{
-                    backgroundColor: '#fff',
-                    borderRadius: '10px',
-                  }}
                   fullWidth
                   autoComplete="email"
                 />
@@ -113,17 +109,13 @@ function RegisterPage() {
               }}
               defaultValue=""
               render={({ field }) => (
-                <TextField
+                <StyledTextFieldInput
                   {...field}
                   type="password"
                   label="Contraseña"
                   variant="outlined"
                   error={!!errors.password}
                   helperText={errors.password?.message}
-                  sx={{
-                    backgroundColor: '#fff',
-                    borderRadius: '10px',
-                  }}
                   fullWidth
                   autoComplete="new-password"
                 />
@@ -139,17 +131,13 @@ function RegisterPage() {
               }}
               defaultValue=""
               render={({ field }) => (
-                <TextField
+                <StyledTextFieldInput
                   {...field}
                   type="password"
                   label="Confirmar contraseña"
                   variant="outlined"
                   error={!!errors.confirmPassword}
                   helperText={errors.confirmPassword?.message}
-                  sx={{
-                    backgroundColor: '#fff',
-                    borderRadius: '10px',
-                  }}
                   fullWidth
                   autoComplete="new-password"
                 />
@@ -167,23 +155,19 @@ function RegisterPage() {
                 },
               }}
               render={({ field }) => (
-                <TextField
+                <StyledTextFieldInput
                   {...field}
                   label="Nombre"
                   variant="outlined"
                   error={!!errors.name}
                   helperText={errors.name?.message}
-                  sx={{
-                    backgroundColor: '#fff',
-                    borderRadius: '10px',
-                  }}
                   fullWidth
                 />
               )}
             />
 
             <Controller
-              name='lastName'
+              name="lastName"
               control={control}
               rules={{
                 required: 'El apellido es requerido.',
@@ -193,16 +177,12 @@ function RegisterPage() {
                 },
               }}
               render={({ field }) => (
-                <TextField
+                <StyledTextFieldInput
                   {...field}
                   label="Apellido"
                   variant="outlined"
                   error={!!errors.lastName}
                   helperText={errors.lastName?.message}
-                  sx={{
-                    backgroundColor: '#fff',
-                    borderRadius: '10px',
-                  }}
                   fullWidth
                 />
               )}
@@ -236,8 +216,13 @@ function RegisterPage() {
                       error: !!errors.birthDate,
                       helperText: errors.birthDate?.message,
                       sx: {
-                        backgroundColor: '#fff',
-                        borderRadius: '10px',
+                        '& .MuiOutlinedInput-root': {
+                          backgroundColor: '#fff',
+                          borderRadius: '10px',
+                        },
+                        '& .MuiFormHelperText-root.Mui-error': {
+                          backgroundColor: 'transparent',
+                        },
                       },
                       fullWidth: true,
                     },
@@ -257,31 +242,30 @@ function RegisterPage() {
                 },
               }}
               render={({ field }) => (
-                <TextField
+                <StyledTextFieldInput
                   {...field}
                   label="DNI"
                   type="number"
                   variant="outlined"
                   error={!!errors.dni}
                   helperText={errors.dni?.message}
-                  sx={{
-                    backgroundColor: '#fff',
-                    borderRadius: '10px',
-                  }}
                   fullWidth
                 />
               )}
             />
 
-            <FormControl fullWidth error={!!errors.genero}>
-              <InputLabel id="genero-label">Genero</InputLabel>
+            <FormControl fullWidth error={!!errors.genre}>
+              <InputLabel id="genre-label">Genero</InputLabel>
               <Controller
-                name="genero"
+                name="genre"
                 control={control}
+                rules={{
+                  required: 'El género es requerido.',
+                }}
                 render={({ field }) => (
                   <Select
                     {...field}
-                    labelId="genero-label"
+                    labelId="genre-label"
                     label="Genero"
                     sx={{ backgroundColor: '#fff', borderRadius: '10px' }}
                   >
@@ -293,7 +277,7 @@ function RegisterPage() {
                   </Select>
                 )}
               />
-              <FormHelperText>{errors.genero?.message}</FormHelperText>
+              <FormHelperText>{errors.genre?.message}</FormHelperText>
             </FormControl>
 
             <Controller
@@ -303,16 +287,12 @@ function RegisterPage() {
                 required: 'El domicilio es requerido.',
               }}
               render={({ field }) => (
-                <TextField
+                <StyledTextFieldInput
                   {...field}
                   label="Domicilio"
                   variant="outlined"
                   error={!!errors.domicilio}
                   helperText={errors.domicilio?.message}
-                  sx={{
-                    backgroundColor: '#fff',
-                    borderRadius: '10px',
-                  }}
                   fullWidth
                 />
               )}
