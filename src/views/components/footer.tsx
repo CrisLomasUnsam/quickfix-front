@@ -4,7 +4,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined'
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined'
-import { useNavigate } from 'react-router'
+import { PageNames } from '../pages/Frame'
 
 const footerContainer = {
   display: 'flex',
@@ -19,25 +19,35 @@ const iconStyle = {
   color: 'white',
 }
 
-export default function Footer({ isClient }: { isClient: boolean }) {
-  const navigate = useNavigate()
+interface FooterProps {
+  isClient: boolean
+  setCurrentPage: (pageName: PageNames) => void
+}
 
+export default function Footer({ isClient, setCurrentPage }: FooterProps) {
   return (
     <Box sx={footerContainer}>
-      <IconButton aria-label="home" onClick={() => navigate('/home')}>
+      <IconButton aria-label="home" onClick={() => setCurrentPage('home')}>
         <HomeOutlinedIcon sx={iconStyle} />
       </IconButton>
-      <IconButton aria-label="service" onClick={() => navigate('/service')}>
+      <IconButton
+        aria-label="service"
+        onClick={() => setCurrentPage('service')}
+      >
         <Inventory2OutlinedIcon sx={{ ...iconStyle, fontSize: '35px' }} />
       </IconButton>
-      {!isClient ? (
-        <IconButton aria-label="balance" onClick={() => navigate('/balance')}>
+      {!isClient && (
+        <IconButton
+          aria-label="balance"
+          onClick={() => setCurrentPage('balance')}
+        >
           <AttachMoneyOutlinedIcon sx={iconStyle} />
         </IconButton>
-      ) : (
-        ''
       )}
-      <IconButton aria-label="profile" onClick={() => navigate('/profile')}>
+      <IconButton
+        aria-label="profile"
+        onClick={() => setCurrentPage('profile')}
+      >
         <PersonOutlineIcon sx={iconStyle} />
       </IconButton>
     </Box>
