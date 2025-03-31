@@ -97,6 +97,7 @@ function RegisterPage() {
                     borderRadius: '10px',
                   }}
                   fullWidth
+                  autoComplete="email"
                 />
               )}
             />
@@ -124,6 +125,7 @@ function RegisterPage() {
                     borderRadius: '10px',
                   }}
                   fullWidth
+                  autoComplete="new-password"
                 />
               )}
             />
@@ -149,6 +151,7 @@ function RegisterPage() {
                     borderRadius: '10px',
                   }}
                   fullWidth
+                  autoComplete="new-password"
                 />
               )}
             />
