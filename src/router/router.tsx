@@ -1,11 +1,12 @@
 import { createBrowserRouter } from 'react-router'
-import Login from '../views/pages/Login'
+// import Login from '../views/pages/Login'
 import { ProtectedRoute } from './routes/ProtectedRoute'
 import DummyClient from '../views/pages/DummyClient'
 import DummyProfessional from '../views/pages/DummyProfessional'
+import RegisterPage from '../views/pages/RegisterPage'
 
 export const router = createBrowserRouter([
-  { path: '/', element: <Login /> },
+  { path: '/', element: <RegisterPage /> },
   {
     //Routes for the client, remember remove dummy view!
     element: <ProtectedRoute isClientRoute={true} />,
