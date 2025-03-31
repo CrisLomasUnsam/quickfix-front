@@ -69,7 +69,7 @@ function RegisterPage() {
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormContainer aria-hidden="false">
+          <FormContainer>
             <Typography variant="h5" gutterBottom align="center">
               Registro
             </Typography>
