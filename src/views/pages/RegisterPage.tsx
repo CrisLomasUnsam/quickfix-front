@@ -16,7 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/L
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import dayjs from 'dayjs'
 
-const ContainerForm = styled(Container)(() => ({
+const FormContainer = styled(Container)(() => ({
   display: 'flex',
   border: '1px solid #000',
   borderRadius: '20px',
@@ -86,7 +86,7 @@ function RegisterPage() {
     <>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <ContainerForm aria-hidden="false">
+          <FormContainer aria-hidden="false">
             <Typography variant="h5" gutterBottom align="center">
               Registro
             </Typography>
@@ -338,7 +338,7 @@ function RegisterPage() {
             >
               Register
             </Button>
-          </ContainerForm>
+          </FormContainer>
         </form>
       </LocalizationProvider>
     </>
