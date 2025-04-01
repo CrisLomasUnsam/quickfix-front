@@ -127,7 +127,7 @@ function RegisterPage() {
               rules={{
                 required: 'Se debe confirmar la contraseña.',
                 validate: (value) =>
-                  value === password || 'El password no coincide.',
+                  value === password || 'La contraseña no coincide.',
               }}
               defaultValue=""
               render={({ field }) => (
