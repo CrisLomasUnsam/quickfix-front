@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router'
-import Login from '../views/pages/Login'
 import { ProtectedRoute } from './routes/ProtectedRoute'
 import DummyClient from '../views/pages/DummyClient'
 import DummyProfessional from '../views/pages/DummyProfessional'
+import Login from '../views/pages/Login'
 
 export const router = createBrowserRouter([
   { path: '/', element: <Login /> },
