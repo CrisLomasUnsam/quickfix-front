@@ -4,7 +4,7 @@ import { ProtectedRoute } from './routes/ProtectedRoute'
 import Frame from '../views/pages/Frame'
 import DummyClient from '../views/pages/DummyClient'
 import DummyProfessional from '../views/pages/DummyProfessional'
-import SeleccionUsuarioPage from '../views/pages/UserSelectionPage'
+import UserSelectPage from '../views/pages/UserSelectionPage'
 import Login from '../views/pages/Login'
 
 export const router = createBrowserRouter([
@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
     path: '/',
     element: <Frame isClient={false} />,
     children: [
-      { path: 'userSelect', element: <SeleccionUsuarioPage /> },
+      { path: 'userSelect', element: <UserSelectPage /> },
       { path: 'register', element: <RegisterPage /> },
     ],
   },
