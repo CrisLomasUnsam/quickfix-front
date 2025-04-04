@@ -27,29 +27,34 @@ const UserSelectionPage = () => {
             <Typography variant="h5" align="center">Select Your Profile</Typography>
 
             <Box sx={{ display: "flex", justifyContent: "center", gap: 2, marginTop: "1rem"}}>
-                <Button variant="contained" color="primary" onClick={() => manageSelection("user")}>
-                    User
+                <Button variant="contained" color="primary" onClick={() => manageSelection("user")}sx={{ flex: 1, minWidth: "9rem", maxWidth: "12rem" }}>
+                    Customer
                 </Button>
-                <Button variant="contained" color="secondary" onClick={() => manageSelection("professional")}>
+                <Button variant="contained" color="secondary" onClick={() => manageSelection("professional")}sx={{ flex: 1, minWidth: "9rem", maxWidth: "12rem" }}>
                     Professional
                 </Button>
             </Box>
            
             {selectedType && (
                 <>
-                    <Typography variant="body1" sx={{ textAlign: "center", marginTop: "1rem" }}>
-                        {selectedType === "user"
-                            ? "Términos y condiciones del Usuario...."
-                            : "Términos y condiciones del Profesional"
-                        }
-                    </Typography>
+                    <Box sx={{maxHeight:"10rem",overflow:"auto",padding:"1rem",border:"1px solid #ccc",borderRadius:"10%"}}>
+
+                        <Typography variant="body1" sx={{ textAlign: "center", marginTop: "1rem" }}>
+                            {selectedType === "user"
+                                ? "Términos y condiciones del Usuario...."
+                                : "Términos y condiciones del Profesional"
+                            }
+                        </Typography>
+
+                    </Box>
+                        
 
                     <FormControlLabel
                         control={<Checkbox checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} />}
                         label="Acepto los términos y condiciones"
                     />
 
-                    <Button variant="contained" color="success" onClick={manageContinue}>
+                    <Button variant="contained" color="success" onClick={manageContinue}sx={{ flex: 1, minWidth: "9rem", maxWidth: "12rem" }}>
                         Continue
                     </Button>
                 </>
