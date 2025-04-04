@@ -5,13 +5,17 @@ import Frame from '../views/pages/Frame'
 import DummyClient from '../views/pages/DummyClient'
 import DummyProfessional from '../views/pages/DummyProfessional'
 import SeleccionUsuarioPage from '../views/pages/UserSelectionPage'
+import Login from '../views/pages/Login'
 
 export const router = createBrowserRouter([
-  { path: '/userPage', element: <SeleccionUsuarioPage /> },
+  { path: '/', element: <Login /> },
   {
     path: '/',
     element: <Frame isClient={false} />,
-    children: [{ path: 'register', element: <RegisterPage /> }],
+    children: [
+      { path: 'userSelect', element: <SeleccionUsuarioPage /> },
+      { path: 'register', element: <RegisterPage /> },
+    ],
   },
   {
     path: '/client',
