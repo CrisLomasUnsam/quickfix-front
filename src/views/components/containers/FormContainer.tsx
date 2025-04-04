@@ -7,7 +7,7 @@ export const FormContainer = styled(Container)(() => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    maxHeight: '100vh',
+    maxHeight: '100%',
     width: '93vw',
     backgroundColor: '#D9D9D9',
     gap: '1rem',
