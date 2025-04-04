@@ -8,7 +8,7 @@ import SeleccionUsuarioPage from '../views/pages/UserSelectionPage'
 import Login from '../views/pages/Login'
 
 export const router = createBrowserRouter([
-  { path: '/', element: <Login /> },
+  { path: '/login', element: <Login /> },
   {
     path: '/',
     element: <Frame isClient={false} />,
