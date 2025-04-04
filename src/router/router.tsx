@@ -2,12 +2,12 @@ import { createBrowserRouter } from 'react-router'
 import RegisterPage from '../views/pages/RegisterPage'
 import { ProtectedRoute } from './routes/ProtectedRoute'
 import Frame from '../views/pages/Frame'
-import Login from '../views/pages/Login'
-import DummyProfessional from '../views/pages/DummyProfessional'
 import DummyClient from '../views/pages/DummyClient'
+import DummyProfessional from '../views/pages/DummyProfessional'
+import SeleccionUsuarioPage from '../views/pages/UserSelectionPage'
 
 export const router = createBrowserRouter([
-  { path: '/', element: <Login /> },
+  { path: '/userPage', element: <SeleccionUsuarioPage /> },
   {
     path: '/',
     element: <Frame isClient={false} />,
