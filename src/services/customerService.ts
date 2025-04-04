@@ -1,35 +1,26 @@
-export class CustomerService {
-    private customers: any[] = [];
-  
-    constructor() {}
-  
-    /*no lo pense mucho este...
-    getCustomersByBalance(minBalance: number): any[] {
-      return this.customers.filter(c => c.balance >= minBalance);
-    }*/
-  
+import axiosClient from "../utils/axios";
+import { CustomerDto } from "../dto/customerDtos/customerDto"; 
+import { CustomerUpdateDto } from "../dto/customerDtos/customerUpdateDto";
+
+export const CustomerService = {
     
-    getCustomerById(id: number): any | undefined {
-      return this.customers.find(c => c.id === id);
+    getCustomerById: async (id: number): Promise<CustomerDto> => {
+        const response = await axiosClient.get<CustomerDto>(`/customers/${id}`);
+        return response.data;
+    },
+
+    searchCustomers: async (query: string): Promise<CustomerDto[]> => {
+        const response = await axiosClient.get<CustomerDto[]>("/customers/search", { params: { q: query } });
+        return response.data;
+    },
+
+    updateCustomer: async (id: number, customerData: CustomerUpdateDto): Promise<void> => {
+        await axiosClient.put(`/customers/${id}`, customerData);
+    },
+
+    deleteCustomer: async (id: number): Promise<void> => {
+        await axiosClient.delete(`/customers/${id}`);
     }
-  
-   
-    searchCustomerByName(query: string): any[] {
-      return this.customers.filter(c =>
-        c.name.toLowerCase().includes(query.toLowerCase()) ||
-        c.lastName.toLowerCase().includes(query.toLowerCase())
-      );
-    }
-  
-    updateCustomer(id: number, updatedData: any): void {
-      const index = this.customers.findIndex(c => c.id === id);
-      if (index !== -1) {
-        this.customers[index] = { ...this.customers[index], ...updatedData };
-      }
-    }
-  
-    deleteCustomer(id: number): void {
-      this.customers = this.customers.filter(c => c.id !== id);
-    }
-  }
+};
+
   
