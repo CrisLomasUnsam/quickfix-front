@@ -9,7 +9,7 @@ export const FormContainer = styled(Container)(() => ({
     alignItems: 'center',
     maxHeight: '100%',
     width: '93vw',
-    backgroundColor: '--primary-color',
+    backgroundColor: 'var(--background-color)',
     gap: '1rem',
     padding: '1rem',
     overflowY: 'auto',
