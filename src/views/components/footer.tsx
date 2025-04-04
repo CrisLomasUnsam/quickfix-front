@@ -4,7 +4,9 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined'
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined'
-import { PageNames } from '../pages/Frame'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack' // Import Back Arrow icon
+import { Link } from 'react-router'
+import useLocationPublic from '../../hooks/useLocationPublic'
 
 const footerContainer = {
   display: 'flex',
@@ -20,36 +22,47 @@ const iconStyle = {
 }
 
 interface FooterProps {
-  isClient: boolean
-  setCurrentPage: (pageName: PageNames) => void
+  isClient?: boolean
 }
 
-export default function Footer({ isClient, setCurrentPage }: FooterProps) {
+export default function Footer({ isClient }: FooterProps) {
+  const { isPublicRoute } = useLocationPublic()
   return (
     <Box sx={footerContainer}>
-      <IconButton aria-label="home" onClick={() => setCurrentPage('home')}>
-        <HomeOutlinedIcon sx={iconStyle} />
-      </IconButton>
-      <IconButton
-        aria-label="service"
-        onClick={() => setCurrentPage('service')}
-      >
-        <Inventory2OutlinedIcon sx={{ ...iconStyle, fontSize: '35px' }} />
-      </IconButton>
-      {!isClient && (
-        <IconButton
-          aria-label="balance"
-          onClick={() => setCurrentPage('balance')}
-        >
-          <AttachMoneyOutlinedIcon sx={iconStyle} />
+      {isPublicRoute ? (
+        <IconButton aria-label="back to login" component={Link} to="/">
+          <ArrowBackIcon sx={iconStyle} />
         </IconButton>
+      ) : (
+        <>
+          <IconButton
+            aria-label="home"
+            component={Link}
+            to={isClient ? '/client/home' : '/pro/dashboard'}
+          >
+            <HomeOutlinedIcon sx={iconStyle} />
+          </IconButton>
+          <IconButton
+            aria-label="service"
+            component={Link}
+            to={isClient ? '/client/service' : '/pro/service'}
+          >
+            <Inventory2OutlinedIcon sx={{ ...iconStyle, fontSize: '35px' }} />
+          </IconButton>
+          {!isClient && (
+            <IconButton aria-label="balance" component={Link} to="/pro/balance">
+              <AttachMoneyOutlinedIcon sx={iconStyle} />
+            </IconButton>
+          )}
+          <IconButton
+            aria-label="profile"
+            component={Link}
+            to={isClient ? '/client/profile' : '/pro/profile'}
+          >
+            <PersonOutlineIcon sx={iconStyle} />
+          </IconButton>
+        </>
       )}
-      <IconButton
-        aria-label="profile"
-        onClick={() => setCurrentPage('profile')}
-      >
-        <PersonOutlineIcon sx={iconStyle} />
-      </IconButton>
     </Box>
   )
 }
