@@ -1,7 +1,5 @@
 import axiosClient from "../utils/axios";
 import { UserDto } from "../dto/userDtos/userDto";
-import { UserUpdateDto } from "../dto/userDtos/userUpdateDto";
-
 export const UserService = {
   
   getUserById: async (id: number): Promise<UserDto> => {
@@ -16,14 +14,9 @@ export const UserService = {
     });
     return response.data;
   },
-
-  
-  updateUser: async (id: number, userData: UserUpdateDto): Promise<void> => {
-    await axiosClient.put(`/users/${id}`, userData);
-  },
-
   
   deleteUser: async (id: number): Promise<void> => {
     await axiosClient.delete(`/users/${id}`);
   },
+
 };
