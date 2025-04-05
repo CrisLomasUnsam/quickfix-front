@@ -8,11 +8,10 @@ import UserSelectionPage from '../views/pages/UserSelectionPage'
 import Login from '../views/pages/Login'
 
 export const router = createBrowserRouter([
-  { path: '/login', element: <Login /> },
   {
-    path: '/',
     element: <Frame isClient={false} />,
     children: [
+      { path: '/', element: <Login /> },
       { path: 'userSelect', element: <UserSelectionPage /> },
       { path: 'register', element: <RegisterPage /> },
     ],
