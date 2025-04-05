@@ -1,15 +1,27 @@
 import { FormContainer } from '../components/containers/FormContainer'
 import Typography from '@mui/material/Typography'
-import { Box, Button } from '@mui/material'
+import { Box, Button, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { Link as MuiLink } from '@mui/material'
 import { Link as RouterLink } from 'react-router'
 import { Controller, useForm } from 'react-hook-form'
 import { StyledTextFieldInput } from '../components/inputs/StyledTextFieldInput'
+import React from 'react'
 
 export default function Login() {
   type FormData = {
     email: string
     password: string
+  }
+
+  const [userType, setUserType] = React.useState('null')
+
+  const handleUserType = (
+    event: React.MouseEvent<HTMLElement>,
+    newUserType: string | null,
+  ) => {
+    if (newUserType !== null) {
+      setUserType(newUserType)
+    }
   }
 
   const {
@@ -39,8 +51,27 @@ export default function Login() {
           style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Typography>Soy cliente | Soy profesional</Typography>
-
+          <ToggleButtonGroup
+            value={userType}
+            exclusive
+            onChange={handleUserType}
+            aria-label="text alignment"
+          >
+            <ToggleButton
+              sx={styles.toggleButton}
+              value="customer"
+              aria-label="Cliente"
+            >
+              <Typography>Soy cliente</Typography>
+            </ToggleButton>
+            <ToggleButton
+              sx={styles.toggleButton}
+              value="profesional"
+              aria-label="Professional"
+            >
+              <Typography>Soy profesional</Typography>
+            </ToggleButton>
+          </ToggleButtonGroup>
           <Controller
             name="email"
             control={control}
@@ -80,11 +111,23 @@ export default function Login() {
             Ingresar
           </Button>
         </form>
-        <MuiLink>¿Olvidaste tu constraseña?</MuiLink>
-        <MuiLink component={RouterLink} to="/userSelect">
+        <MuiLink sx={styles.link}>¿Olvidaste tu constraseña?</MuiLink>
+        <MuiLink sx={styles.link} component={RouterLink} to="/userSelect">
           Registarse
         </MuiLink>
       </FormContainer>
     </Box>
   )
+}
+
+const styles = {
+  toggleButton: {
+    width: '150px',
+    textTransform: 'none',
+  },
+
+  link: {
+    color: 'black',
+    textDecorationColor: 'black',
+  },
 }
