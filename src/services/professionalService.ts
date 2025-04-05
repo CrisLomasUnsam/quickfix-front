@@ -2,6 +2,7 @@ import axiosClient from "../utils/axios";
 import { ProfessionalDto } from "../dto/professionalDtos/professionalDto"; 
 import { ProfessionalUpdateDto } from "../dto/professionalDtos/professionalUpdateDto";
 
+
 export const ProfessionalService = {
 
     //Obtener profesional por ID
