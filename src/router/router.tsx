@@ -7,11 +7,16 @@ import DummyProfessional from '../views/pages/DummyProfessional'
 import UserSelectionPage from '../views/pages/UserSelectionPage'
 import Login from '../views/pages/Login'
 import PerfilTop from '../views/components/perfilUser/perfileFrame'
+import ProfileComponent from '../views/components/profileComponent'
 
 export const router = createBrowserRouter([
   { path: '/login', element: <Login /> },
-  { path:'/perfilFrame', element:<PerfilTop/> },
-/*
+  {
+    path: '/perfilFrame',
+    element: <PerfilTop />,
+    children: [{ path: 'profile', element: <ProfileComponent /> }],
+  },
+  /*
   {path:'/perfilFrame',
     element: <Frame isClient={false} />,
     children: [

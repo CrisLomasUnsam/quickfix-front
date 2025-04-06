@@ -14,6 +14,7 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import dayjs from 'dayjs'
 import { FormContainer } from '../components/containers/FormContainer'
 import { StyledTextFieldInput } from '../components/inputs/StyledTextFieldInput'
+import { Genero } from '../../utils/enums'
 
 function RegisterPage() {
   type FormData = {
@@ -25,14 +26,10 @@ function RegisterPage() {
     birthDate: string | null
     dni: string
     genre: string
-    domicilio: string
+    residence: string
   }
 
-  enum Genero {
-    Masculino = 'Masculino',
-    Femenino = 'Femenino',
-    Otro = 'Otro',
-  }
+
 
   const {
     control,
@@ -50,7 +47,7 @@ function RegisterPage() {
       birthDate: null,
       dni: '',
       genre: '',
-      domicilio: '',
+      residence: '',
     },
   })
 
@@ -281,7 +278,7 @@ function RegisterPage() {
             </FormControl>
 
             <Controller
-              name="domicilio"
+              name="residence"
               control={control}
               rules={{
                 required: 'El domicilio es requerido.',
@@ -291,8 +288,8 @@ function RegisterPage() {
                   {...field}
                   label="Domicilio"
                   variant="outlined"
-                  error={!!errors.domicilio}
-                  helperText={errors.domicilio?.message}
+                  error={!!errors.residence}
+                  helperText={errors.residence?.message}
                   fullWidth
                 />
               )}
