@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { describe, test, vi, beforeEach, afterEach, expect } from 'vitest'
-import App from "../App"
+import App from "../app"
 import { render, screen } from '@testing-library/react'
 
 describe('Test de ejemplo', () => {
