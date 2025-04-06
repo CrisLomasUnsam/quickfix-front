@@ -7,10 +7,12 @@ import DummyProfessional from '../views/pages/DummyProfessional'
 import UserSelectionPage from '../views/pages/UserSelectionPage'
 import Login from '../views/pages/Login'
 import PerfilTop from '../views/components/perfilUser/perfileFrame'
+import SerchProfessionalFrame from '../views/components/profSearchCom/profSerchFrame'
 
 export const router = createBrowserRouter([
   { path: '/login', element: <Login /> },
   { path:'/perfilFrame', element:<PerfilTop/> },
+  { path:'/serchProfessional', element:<SerchProfessionalFrame/>},
 /*
   {path:'/perfilFrame',
     element: <Frame isClient={false} />,
