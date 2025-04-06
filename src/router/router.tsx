@@ -1,13 +1,13 @@
 import { createBrowserRouter } from 'react-router'
-import RegisterPage from '../views/pages/RegisterPage'
-import { ProtectedRoute } from './routes/ProtectedRoute'
-import Frame from '../views/pages/Frame'
-import DummyClient from '../views/pages/DummyClient'
-import DummyProfessional from '../views/pages/DummyProfessional'
-import UserSelectionPage from '../views/pages/UserSelectionPage'
-import Login from '../views/pages/Login'
+import { ProtectedRoute } from './routes/protectedRoute'
 import PerfilTop from '../views/components/perfilUser/perfileFrame'
 import SerchProfessionalFrame from '../views/pages/professionalSearchPage'
+import Login from '../views/pages/login'
+import UserSelectionPage from '../views/pages/userSelectionPage'
+import RegisterPage from '../views/pages/registerPage'
+import Frame from '../views/pages/frame'
+import DummyClient from '../views/pages/dummyClient'
+import DummyProfessional from '../views/pages/dummyProfessional'
 
 export const router = createBrowserRouter([
   { path: '/login', element: <Login /> },

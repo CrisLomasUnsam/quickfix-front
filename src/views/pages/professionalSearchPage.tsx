@@ -1,9 +1,8 @@
-import { Box, Typography, Button, CircularProgress } from '@mui/material';
-import MapSearch from '../components/profSearchCom/mapSearch';
-import { useState } from 'react';
-//import SearchIcon from '@mui/icons-material/Search';
+import { Box, Typography, Button, CircularProgress } from '@mui/material'
+import MapSearch from '../components/profSearchCom/mapSearch'
+import { useState } from 'react'
 
-export default function SerchProfessionalFrame() {
+export default function ProfessionalSearchPage() {
 
     const [buscando, setBuscando] = useState(true); //Es un estado para cancelar la animacion por ahora, se podria usar para cancelar la busqueda 
 

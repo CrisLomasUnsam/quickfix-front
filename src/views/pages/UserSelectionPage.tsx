@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormContainer } from "../components/containers/FormContainer";
+import { FormContainer } from "../components/containers/formContainer";
 import { Button, Typography, Checkbox, FormControlLabel, Box } from "@mui/material";
 import { useNavigate } from "react-router";
 
