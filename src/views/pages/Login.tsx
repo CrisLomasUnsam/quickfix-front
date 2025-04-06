@@ -5,23 +5,12 @@ import { Link as MuiLink } from '@mui/material'
 import { Link as RouterLink } from 'react-router'
 import { Controller, useForm } from 'react-hook-form'
 import { StyledTextFieldInput } from '../components/inputs/StyledTextFieldInput'
-import React from 'react'
 
 export default function Login() {
   type FormData = {
+    userType: string
     email: string
     password: string
-  }
-
-  const [userType, setUserType] = React.useState('null')
-
-  const handleUserType = (
-    event: React.MouseEvent<HTMLElement>,
-    newUserType: string | null,
-  ) => {
-    if (newUserType !== null) {
-      setUserType(newUserType)
-    }
   }
 
   const {
@@ -31,6 +20,7 @@ export default function Login() {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
+      userType: '',
       email: '',
       password: '',
     },
@@ -51,27 +41,43 @@ export default function Login() {
           style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <ToggleButtonGroup
-            value={userType}
-            exclusive
-            onChange={handleUserType}
-            aria-label="text alignment"
-          >
-            <ToggleButton
-              sx={styles.toggleButton}
-              value="customer"
-              aria-label="Cliente"
-            >
-              <Typography>Soy cliente</Typography>
-            </ToggleButton>
-            <ToggleButton
-              sx={styles.toggleButton}
-              value="profesional"
-              aria-label="Professional"
-            >
-              <Typography>Soy profesional</Typography>
-            </ToggleButton>
-          </ToggleButtonGroup>
+          <Controller
+            name="userType"
+            control={control}
+            rules={{ required: 'Selecciona un tipo de usuario' }}
+            render={({ field }) => (
+              <>
+                <ToggleButtonGroup
+                  value={field.value}
+                  exclusive
+                  onChange={(_, value) => {
+                    if (value !== null) field.onChange(value)
+                  }}
+                  aria-label="Tipo de usuario"
+                >
+                  <ToggleButton
+                    sx={styles.toggleButton}
+                    value="customer"
+                    aria-label="Cliente"
+                  >
+                    <Typography>Soy cliente</Typography>
+                  </ToggleButton>
+                  <ToggleButton
+                    sx={styles.toggleButton}
+                    value="profesional"
+                    aria-label="Profesional"
+                  >
+                    <Typography>Soy profesional</Typography>
+                  </ToggleButton>
+                </ToggleButtonGroup>
+                {errors.userType && (
+                  <Typography color="error" variant="caption">
+                    {errors.userType.message}
+                  </Typography>
+                )}
+              </>
+            )}
+          />
           <Controller
             name="email"
             control={control}
@@ -111,7 +117,7 @@ export default function Login() {
             Ingresar
           </Button>
         </form>
-        <MuiLink sx={styles.link}>¿Olvidaste tu constraseña?</MuiLink>
+        <MuiLink sx={styles.link}>¿Olvidaste tu contraseña?</MuiLink>
         <MuiLink sx={styles.link} component={RouterLink} to="/userSelect">
           Registarse
         </MuiLink>
