@@ -12,9 +12,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import dayjs from 'dayjs'
-import { FormContainer } from '../components/containers/FormContainer'
-import { StyledTextFieldInput } from '../components/inputs/StyledTextFieldInput'
 import { Genero } from '../../utils/enums'
+import { FormContainer } from '../components/containers/formContainer'
+import { StyledTextFieldInput } from '../components/inputs/styledTextFieldInput'
 
 function RegisterPage() {
   type FormData = {
@@ -28,8 +28,6 @@ function RegisterPage() {
     genre: string
     residence: string
   }
-
-
 
   const {
     control,
