@@ -1,5 +1,5 @@
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
-import MapSearch from './mapSearch';
+import MapSearch from '../components/profSearchCom/mapSearch';
 import { useState } from 'react';
 //import SearchIcon from '@mui/icons-material/Search';
 
