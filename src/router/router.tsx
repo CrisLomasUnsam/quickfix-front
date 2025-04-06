@@ -12,7 +12,7 @@ import SerchProfessionalFrame from '../views/components/profSearchCom/profSerchF
 export const router = createBrowserRouter([
   { path: '/login', element: <Login /> },
   { path:'/perfilFrame', element:<PerfilTop/> },
-  { path:'/serchProfessional', element:<SerchProfessionalFrame/>},
+  
 /*
   {path:'/perfilFrame',
     element: <Frame isClient={false} />,
@@ -29,6 +29,7 @@ export const router = createBrowserRouter([
     children: [
       { path: 'userSelect', element: <UserSelectionPage /> },
       { path: 'register', element: <RegisterPage /> },
+      
     ],
   },
   {
@@ -37,7 +38,10 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <ProtectedRoute isClientRoute={true} />,
-        children: [{ path: 'home', element: <DummyClient /> }],
+        children: [{ path: 'home', element: <DummyClient /> },
+          { path:'serchProfessional', element:<SerchProfessionalFrame/>},
+        ],
+        
       },
     ],
   },
