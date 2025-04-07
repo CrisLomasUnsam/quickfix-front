@@ -7,20 +7,6 @@ import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack' // Import Back Arrow icon
 import { Link } from 'react-router'
 import useLocationPublic from '../../hooks/useLocationPublic'
-
-const footerContainer = {
-  display: 'flex',
-  backgroundColor: 'var(--primary-color)',
-  height: '9vh',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-}
-
-const iconStyle = {
-  fontSize: '40px',
-  color: 'white',
-}
-
 interface FooterProps {
   isClient?: boolean
 }
@@ -28,10 +14,15 @@ interface FooterProps {
 export default function Footer({ isClient }: FooterProps) {
   const { isPublicRoute } = useLocationPublic()
   return (
-    <Box sx={footerContainer}>
+    <Box sx={styles.footerContainer}>
       {isPublicRoute ? (
-        <IconButton aria-label="back to login" component={Link} to="/">
-          <ArrowBackIcon sx={iconStyle} />
+        <IconButton
+          aria-label="back to login"
+          component={Link}
+          to="/"
+          sx={{ display: location.pathname !== '/' ? 'inherit' : 'none' }}
+        >
+          <ArrowBackIcon sx={styles.iconStyle} />
         </IconButton>
       ) : (
         <>
@@ -40,18 +31,20 @@ export default function Footer({ isClient }: FooterProps) {
             component={Link}
             to={isClient ? '/client/home' : '/pro/dashboard'}
           >
-            <HomeOutlinedIcon sx={iconStyle} />
+            <HomeOutlinedIcon sx={styles.iconStyle} />
           </IconButton>
           <IconButton
             aria-label="service"
             component={Link}
             to={isClient ? '/client/service' : '/pro/service'}
           >
-            <Inventory2OutlinedIcon sx={{ ...iconStyle, fontSize: '35px' }} />
+            <Inventory2OutlinedIcon
+              sx={{ ...styles.iconStyle, fontSize: '35px' }}
+            />
           </IconButton>
           {!isClient && (
             <IconButton aria-label="balance" component={Link} to="/pro/balance">
-              <AttachMoneyOutlinedIcon sx={iconStyle} />
+              <AttachMoneyOutlinedIcon sx={styles.iconStyle} />
             </IconButton>
           )}
           <IconButton
@@ -59,10 +52,29 @@ export default function Footer({ isClient }: FooterProps) {
             component={Link}
             to={isClient ? '/client/profile' : '/pro/profile'}
           >
-            <PersonOutlineIcon sx={iconStyle} />
+            <PersonOutlineIcon sx={styles.iconStyle} />
           </IconButton>
         </>
       )}
     </Box>
   )
+}
+
+const styles = {
+  footerContainer: {
+    display: 'flex',
+    backgroundColor: 'var(--primary-color)',
+    height: '9vh',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    position: 'fixed',
+    width: '100%',
+    bottom: '0',
+    zIndex: '2',
+  },
+
+  iconStyle: {
+    fontSize: '40px',
+    color: 'white',
+  },
 }

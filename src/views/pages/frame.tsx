@@ -10,19 +10,29 @@ type FrameProps = {
 
 export default function Frame({ isClient }: FrameProps) {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        height: '100vh',
-      }}
-    >
+    <Box sx={styles.container}>
       <Header />
-      <Box sx={{ flexGrow: 1, padding: '1rem 0 1rem 0', overflowY: 'auto' }}>
+      <Box sx={styles.outletContainer}>
         <Outlet />
       </Box>
       <Footer isClient={isClient} />
     </Box>
   )
+}
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100vh',
+    position: 'relative',
+  },
+
+  outletContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '10vh 0 10vh 0',
+    flex: '1',
+  },
 }

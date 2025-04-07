@@ -14,9 +14,9 @@ export const router = createBrowserRouter([
   { path:'/perfilFrame', element:<PerfilTop/> },
   
   {
-    path: '/',
     element: <Frame isClient={false} />,
     children: [
+      { path: '/', element: <Login /> },
       { path: 'userSelect', element: <UserSelectionPage /> },
       { path: 'register', element: <RegisterPage /> },
       
