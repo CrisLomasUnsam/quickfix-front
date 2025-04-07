@@ -1,6 +1,13 @@
-import { Box } from '@mui/material'
-import { useForm } from 'react-hook-form'
-
+import { useState, useEffect } from 'react'
+import { useForm, SubmitHandler, Controller } from 'react-hook-form'
+import {
+  Box,
+  Button,
+  Grid,
+  CircularProgress,
+  Alert,
+} from '@mui/material' // Añadido Select, etc.
+import { StyledTextFieldInput } from './inputs/styledTextFieldInput'
 export interface UserProfileData {
   name: string
   lastName: string
@@ -10,51 +17,201 @@ export interface UserProfileData {
   email: string
   residence: string
 }
-
-const mockUserProfile: UserProfileData = {
-  name: 'Juan',
-  lastName: 'Pérez',
-  birthDate: '1990-01-01',
-  dni: '12345678',
-  genre: 'Masculino',
-  email: 'juanP@hotmail.com',
-  residence: 'Calle Falsa 123',
+const initialMockData: UserProfileData = {
+  name: 'Ana',
+  lastName: 'García López',
+  birthDate: '1995-08-20',
+  dni: '12345678Z',
+  genre: 'Femenino',
+  email: 'ana.garcia@email.com',
+  residence: 'Madrid, España',
 }
 
-function ProfileComponent() {
+const ProfileComponent = () => {
+  const [isEditing, setIsEditing] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null)
+  const [profileData, setProfileData] = useState<UserProfileData>(
+    /* cargamos mock, recordar cambiar!! */ initialMockData,
+  )
+
   const {
     control,
     handleSubmit,
     reset,
-    formState: { errors, isDirty },
+    formState: { isDirty },
   } = useForm<UserProfileData>({
-    defaultValues: mockUserProfile,
-    mode: 'onBlur',
+    defaultValues: profileData,
   })
 
-  const onSubmit = (data: UserProfileData) => {
-    console.log('Datos actualizados:', data)
-  }
+  useEffect(() => {
+    reset(profileData)
+  }, [profileData, reset, isEditing])
 
   const handleModifyClick = () => {
     setIsEditing(true)
-    reset(profileData) // Asegura que el form tenga los datos frescos al editar
+    reset(profileData)
+  }
+
+  const handleCancelClick = () => {
+    setIsEditing(false)
+    setError(null)
+    reset(profileData)
+  }
+
+  const onSubmit: SubmitHandler<UserProfileData> = async (formData) => {
+    setIsLoading(true)
+    setError(null)
+
+    const dataToSave: UserProfileData = {
+      ...profileData, // Comienza con todos los datos actuales (incluye no editables!)
+      // Sobrescribe solo los campos que *son* editables, de momento solo email y residence
+      email: formData.email, // Por si lo pierde?
+      residence: formData.residence, // se mudo?
+    }
+
+    console.log('Datos a guardar:', dataToSave)
+
+    setTimeout(() => {
+      setIsLoading(false)
+      setIsEditing(false)
+      setProfileData(dataToSave)
+    }, 2000)
+  }
+
+  const renderField = (
+    name: keyof UserProfileData,
+    label: string,
+    isEditableThisField: boolean,
+    isRequired: boolean = false,
+  ) => {
+    const isDisabled = !isEditing || !isEditableThisField
+    const fieldRules: {
+      required?: string
+      pattern?: { value: RegExp; message: string }
+    } =
+      isEditableThisField && isRequired
+        ? { required: `${label} es requerido` }
+        : {}
+    if (name === 'email' && isEditableThisField) {
+      fieldRules.pattern = {
+        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+        message: 'Dirección de correo inválida',
+      }
+    }
+
+    return (
+      <Controller
+        name={name}
+        control={control}
+        rules={fieldRules}
+        render={({ field, fieldState: { error } }) => {
+          if (isEditableThisField) {
+            return (
+              <StyledTextFieldInput
+                {...field}
+                label={label}
+                variant="outlined"
+                fullWidth
+                disabled={isDisabled}
+                error={isEditableThisField && !!error}
+                helperText={isEditableThisField && error ? error.message : ' '}
+                value={
+                  isDisabled ? (profileData[name] ?? '') : (field.value ?? '')
+                }
+                type={
+                  name === 'birthDate' && isEditableThisField ? 'date' : 'text'
+                }
+                slotProps={{
+                  inputLabel: name === 'birthDate' ? { shrink: true } : {},
+                }}
+              />
+            )
+          } else {
+            return (
+              <StyledTextFieldInput
+                {...field}
+                label={label}
+                variant="outlined"
+                fullWidth
+                disabled={isDisabled}
+                error={isEditableThisField && !!error}
+                helperText={isEditableThisField && error?.message}
+                value={
+                  isDisabled ? (profileData[name] ?? '') : (field.value ?? '')
+                }
+                type={
+                  name === 'birthDate' && isEditableThisField ? 'date' : 'text'
+                }
+                slotProps={{
+                  inputLabel: name === 'birthDate' ? { shrink: true } : {},
+                }}
+              />
+            )
+          }
+        }}
+      />
+    )
   }
 
   return (
-    <>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          p: 2,
-          position: 'relative',
-          bottom: 0,
-        }}
-      >
-        <div>HOLAAAA</div>
+    <Box
+      component="form"
+      onSubmit={handleSubmit(onSubmit)}
+      sx={{
+        maxWidth: 800,
+        margin: 'auto',
+        padding: 3,
+        borderTop: '1px solid black',
+      }}
+    >
+      {error && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      )}
+
+      <Grid container spacing={3}>
+        {renderField('name', 'Nombre', false, true)}
+        {renderField('lastName', 'Apellidos', false, true)}
+        {renderField('birthDate', 'Fecha de Nacimiento', false)}
+        {renderField('dni', 'DNI', false)}
+        {renderField('genre', 'Género', false)}
+        {renderField('email', 'Correo Electrónico', true, true)}
+        {renderField('residence', 'Residencia', true, true)}
+      </Grid>
+
+      <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
+        {isEditing ? (
+          <>
+            <Button
+              variant="contained"
+              onClick={handleCancelClick}
+              disabled={isLoading}
+              sx={{ borderRadius: '30px', backgroundColor: '#3B56B0' }}
+            >
+              Cancelar
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ borderRadius: '30px', backgroundColor: '#3B56B0' }}
+              disabled={!isDirty || isLoading}
+            >
+              {isLoading ? <CircularProgress size={24} /> : 'Guardar Cambios'}
+            </Button>
+          </>
+        ) : (
+          <Button
+            variant="contained"
+            onClick={handleModifyClick}
+            sx={{ borderRadius: '30px', backgroundColor: '#3B56B0' }}
+          >
+            Modificar Perfil
+          </Button>
+        )}
       </Box>
-    </>
+    </Box>
   )
 }
 

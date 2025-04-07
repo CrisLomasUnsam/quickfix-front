@@ -11,22 +11,12 @@ import DummyClient from '../views/pages/dummyClient'
 import DummyProfessional from '../views/pages/dummyProfessional'
 
 export const router = createBrowserRouter([
-  { path: '/login', element: <Login /> },
+  { path: '/', element: <Login /> },
   {
     path: '/perfilFrame',
     element: <PerfilTop />,
     children: [{ path: 'profile', element: <ProfileComponent /> }],
   },
-  /*
-  {path:'/perfilFrame',
-    element: <Frame isClient={false} />,
-    children: [
-      { path: 'userSelect', element: <UserSelectionPage /> },
-      { path:'perfilFrame', element:<PerfilTop/> },
-      { path: 'register', element: <RegisterPage /> },
-    ],
-
-  },*/
   {
     path: '/',
     element: <Frame isClient={false} />,

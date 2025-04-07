@@ -1,20 +1,26 @@
-import { styled, TextField } from "@mui/material";
+import { styled, TextField } from '@mui/material'
 
-export const StyledTextFieldInput  = styled(TextField)(({ theme }) => ({
-    '& .MuiOutlinedInput-root': {
-       backgroundColor: '#fff',
-       borderRadius: '10px',
-       '&.Mui-focused fieldset': {
-         borderRadius: '10px',
-       },
-       overflow: 'hidden',
+export const StyledTextFieldInput = styled(TextField)(({ theme }) => ({
+  '& .MuiOutlinedInput-root': {
+    backgroundColor: '#fff',
+    borderRadius: '10px',
+    '&.Mui-focused fieldset': {
+      borderRadius: '10px',
     },
-    '& .MuiFormHelperText-root.Mui-error': {
-        backgroundColor: 'transparent',
-        color: theme.palette.error.main,
+    overflow: 'hidden',
+  },
+  '& .MuiFormHelperText-root.Mui-error': {
+    backgroundColor: 'transparent',
+    color: theme.palette.error.main,
+  },
+  '& .MuiFormHelperText-root': {
+    backgroundColor: 'transparent',
+    marginRight: 0,
+  },
+  '&.Mui-disabled': {
+    backgroundColor: '#f0f0f0',
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#ccc',
     },
-    '& .MuiFormHelperText-root': {
-        backgroundColor: 'transparent',
-        marginRight: 0,
-    }
-  }));
+  },
+}))
