@@ -9,6 +9,7 @@ export const StyledTextFieldInput = styled(TextField)(({ theme }) => ({
     },
     overflow: 'hidden',
   },
+
   '& .MuiFormHelperText-root.Mui-error': {
     backgroundColor: 'transparent',
     color: theme.palette.error.main,
@@ -17,10 +18,16 @@ export const StyledTextFieldInput = styled(TextField)(({ theme }) => ({
     backgroundColor: 'transparent',
     marginRight: 0,
   },
-  '&.Mui-disabled': {
-    backgroundColor: '#f0f0f0',
+
+  // Por si se quiere cambiar el color del texto del input deshabilitado
+  '& .MuiOutlinedInput-root.Mui-disabled': {
+    backgroundColor: '#f6f8fc', // más contraste? ajutar
+    color: '#6b7280',
     '& .MuiOutlinedInput-notchedOutline': {
       borderColor: '#ccc',
+    },
+    '& input.Mui-disabled': {
+      WebkitTextFillColor: '#6b7280',
     },
   },
 }))

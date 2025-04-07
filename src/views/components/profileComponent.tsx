@@ -109,7 +109,7 @@ const ProfileComponent = () => {
                 fullWidth
                 disabled={isDisabled}
                 error={isEditableThisField && !!error}
-                helperText={isEditableThisField && error ? error.message : ' '}
+                helperText={isEditableThisField && error ? error.message : undefined}
                 value={
                   isDisabled ? (profileData[name] ?? '') : (field.value ?? '')
                 }
@@ -175,7 +175,16 @@ const ProfileComponent = () => {
         {renderField('residence', 'Residencia', true, true)}
       </Grid>
 
-      <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
+      <Box
+        sx={{
+          mt: 3,
+          display: 'flex',
+          justifyContent: 'flex-end',
+          gap: 2,
+          position: 'sticky',
+          bottom: '9vh',
+        }}
+      >
         {isEditing ? (
           <>
             <Button
