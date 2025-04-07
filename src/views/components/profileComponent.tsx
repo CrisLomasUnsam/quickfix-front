@@ -1,12 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
-import {
-  Box,
-  Button,
-  Grid,
-  CircularProgress,
-  Alert,
-} from '@mui/material' // Añadido Select, etc.
+import { Box, Button, Grid, CircularProgress, Alert } from '@mui/material' // Añadido Select, etc.
 import { StyledTextFieldInput } from './inputs/styledTextFieldInput'
 export interface UserProfileData {
   name: string
@@ -159,8 +153,8 @@ const ProfileComponent = () => {
       component="form"
       onSubmit={handleSubmit(onSubmit)}
       sx={{
-        maxWidth: 800,
-        margin: 'auto',
+        height: 'auto',
+        maxWidth: '93vw',
         padding: 3,
         borderTop: '1px solid black',
       }}
