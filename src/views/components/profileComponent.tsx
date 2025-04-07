@@ -1,7 +1,15 @@
 import { useState, useEffect } from 'react'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
-import { Box, Button, Grid, CircularProgress, Alert } from '@mui/material' // Añadido Select, etc.
+import {
+  Box,
+  Button,
+  Grid,
+  CircularProgress,
+  Alert,
+  MenuItem,
+} from '@mui/material' // Añadido Select, etc.
 import { StyledTextFieldInput } from './inputs/styledTextFieldInput'
+import { Genero } from '../../utils/enums'
 export interface UserProfileData {
   name: string
   lastName: string
@@ -38,6 +46,8 @@ const ProfileComponent = () => {
     defaultValues: profileData,
   })
 
+  const genreOptions = Object.values(Genero)
+
   useEffect(() => {
     reset(profileData)
   }, [profileData, reset, isEditing])
@@ -59,7 +69,8 @@ const ProfileComponent = () => {
 
     const dataToSave: UserProfileData = {
       ...profileData, // Comienza con todos los datos actuales (incluye no editables!)
-      // Sobrescribe solo los campos que *son* editables, de momento solo email y residence
+      // Sobrescribe solo los campos que *son* editables, de momento solo email, residence y genre
+      genre: formData.genre, // Agregar mas generos?
       email: formData.email, // Por si lo pierde?
       residence: formData.residence, // se mudo?
     }
@@ -87,6 +98,7 @@ const ProfileComponent = () => {
       isEditableThisField && isRequired
         ? { required: `${label} es requerido` }
         : {}
+
     if (name === 'email' && isEditableThisField) {
       fieldRules.pattern = {
         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -94,56 +106,57 @@ const ProfileComponent = () => {
       }
     }
 
+    if (name === 'genre' && isEditableThisField) {
+      return (
+        <Controller
+          name={name}
+          control={control}
+          rules={fieldRules}
+          render={({ field, fieldState: { error } }) => (
+            <StyledTextFieldInput
+              {...field}
+              select
+              label={label}
+              variant="outlined"
+              fullWidth
+              disabled={isDisabled}
+              error={!!error}
+              helperText={error ? error.message : undefined}
+            >
+              {genreOptions.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </StyledTextFieldInput>
+          )}
+        />
+      )
+    }
+
     return (
       <Controller
         name={name}
         control={control}
         rules={fieldRules}
-        render={({ field, fieldState: { error } }) => {
-          if (isEditableThisField) {
-            return (
-              <StyledTextFieldInput
-                {...field}
-                label={label}
-                variant="outlined"
-                fullWidth
-                disabled={isDisabled}
-                error={isEditableThisField && !!error}
-                helperText={isEditableThisField && error ? error.message : undefined}
-                value={
-                  isDisabled ? (profileData[name] ?? '') : (field.value ?? '')
-                }
-                type={
-                  name === 'birthDate' && isEditableThisField ? 'date' : 'text'
-                }
-                slotProps={{
-                  inputLabel: name === 'birthDate' ? { shrink: true } : {},
-                }}
-              />
-            )
-          } else {
-            return (
-              <StyledTextFieldInput
-                {...field}
-                label={label}
-                variant="outlined"
-                fullWidth
-                disabled={isDisabled}
-                error={isEditableThisField && !!error}
-                helperText={isEditableThisField && error?.message}
-                value={
-                  isDisabled ? (profileData[name] ?? '') : (field.value ?? '')
-                }
-                type={
-                  name === 'birthDate' && isEditableThisField ? 'date' : 'text'
-                }
-                slotProps={{
-                  inputLabel: name === 'birthDate' ? { shrink: true } : {},
-                }}
-              />
-            )
-          }
-        }}
+        render={({ field, fieldState: { error } }) => (
+          <StyledTextFieldInput
+            {...field}
+            label={label}
+            variant="outlined"
+            fullWidth
+            disabled={isDisabled}
+            error={isEditableThisField && !!error}
+            helperText={
+              isEditableThisField && error ? error.message : undefined
+            }
+            value={isDisabled ? (profileData[name] ?? '') : (field.value ?? '')}
+            type={name === 'birthDate' && isEditableThisField ? 'date' : 'text'}
+            slotProps={{
+              inputLabel: name === 'birthDate' ? { shrink: true } : {},
+            }}
+          />
+        )}
       />
     )
   }
@@ -170,7 +183,7 @@ const ProfileComponent = () => {
         {renderField('lastName', 'Apellidos', false, true)}
         {renderField('birthDate', 'Fecha de Nacimiento', false)}
         {renderField('dni', 'DNI', false)}
-        {renderField('genre', 'Género', false)}
+        {renderField('genre', 'Género', true, true)}
         {renderField('email', 'Correo Electrónico', true, true)}
         {renderField('residence', 'Residencia', true, true)}
       </Grid>
