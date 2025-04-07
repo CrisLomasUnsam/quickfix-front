@@ -52,8 +52,8 @@ export default function PerfilTop() {
             )
           })}
         </ButtonGroup>
+        <Outlet />
       </Box>
-      <Outlet />
     </>
   )
 }
