@@ -1,4 +1,4 @@
-import { Container, styled } from "@mui/material";
+import { Container, styled } from '@mui/material'
 
 export const FormContainer = styled(Container)(() => ({
     display: 'flex',

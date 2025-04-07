@@ -18,9 +18,9 @@ export const router = createBrowserRouter([
     children: [{ path: 'profile', element: <ProfileComponent /> }],
   },
   {
-    path: '/',
     element: <Frame isClient={false} />,
     children: [
+      { path: '/', element: <Login /> },
       { path: 'userSelect', element: <UserSelectionPage /> },
       { path: 'register', element: <RegisterPage /> },
     ],

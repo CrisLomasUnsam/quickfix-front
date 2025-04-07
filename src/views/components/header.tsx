@@ -1,15 +1,8 @@
 import Box from '@mui/material/Box'
 
-const headerContainer = {
-  display: 'flex',
-  backgroundColor: 'var(--primary-color)',
-  height: '9vh',
-  alignItems: 'center',
-}
-
 export default function Header() {
   return (
-    <Box sx={headerContainer}>
+    <Box sx={styles.headerContainer}>
       <img
         src="/img/Logo.png"
         style={{
@@ -19,4 +12,16 @@ export default function Header() {
       />
     </Box>
   )
+}
+
+const styles = {
+  headerContainer: {
+    display: 'flex',
+    backgroundColor: 'var(--primary-color)',
+    height: '9vh',
+    alignItems: 'center',
+    position: 'fixed',
+    width: '100%',
+    zIndex: '2',
+  },
 }
