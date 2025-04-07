@@ -28,7 +28,8 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <ProtectedRoute isClientRoute={true} />,
-        children: [{ path: 'home', element: <DummyClient /> },
+        children: [
+          { path: 'home', element: <DummyClient /> },
           { path:'serchProfessional', element:<SerchProfessionalFrame/>},
         ],
         
@@ -41,7 +42,9 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <ProtectedRoute isClientRoute={false} />,
-        children: [{ path: 'dashboard', element: <DummyProfessional /> }],
+        children: [
+          { path: 'dashboard', element: <DummyProfessional /> }
+        ],
       },
     ],
   },
