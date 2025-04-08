@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router'
 import { ProtectedRoute } from './routes/protectedRoute'
 import PerfilTop from '../views/components/perfilUser/perfileFrame'
+import ProfileComponent from '../views/components/profileComponent'
 import SerchProfessionalFrame from '../views/pages/professionalSearchPage'
 import Login from '../views/pages/login'
 import UserSelectionPage from '../views/pages/userSelectionPage'
@@ -10,16 +11,17 @@ import DummyClient from '../views/pages/dummyClient'
 import DummyProfessional from '../views/pages/dummyProfessional'
 
 export const router = createBrowserRouter([
-  { path: '/login', element: <Login /> },
-  { path:'/perfilFrame', element:<PerfilTop/> },
-  
-  {
+{
     element: <Frame isClient={false} />,
     children: [
       { path: '/', element: <Login /> },
       { path: 'userSelect', element: <UserSelectionPage /> },
       { path: 'register', element: <RegisterPage /> },
-      
+      {
+        path: 'perfilFrame',
+        element: <PerfilTop />,
+        children: [{ path: 'profile', element: <ProfileComponent /> }],
+      },
     ],
   },
   {
@@ -32,7 +34,6 @@ export const router = createBrowserRouter([
           { path: 'home', element: <DummyClient /> },
           { path:'serchProfessional', element:<SerchProfessionalFrame/>},
         ],
-        
       },
     ],
   },
