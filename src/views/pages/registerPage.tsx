@@ -25,8 +25,8 @@ function RegisterPage() {
     lastName: string
     birthDate: string | null
     dni: string
-    genre: string
-    residence: string
+    gender: string
+    address: string
   }
 
   const {
@@ -44,8 +44,8 @@ function RegisterPage() {
       lastName: '',
       birthDate: null,
       dni: '',
-      genre: '',
-      residence: '',
+      gender: '',
+      address: '',
     },
   })
 
@@ -249,10 +249,10 @@ function RegisterPage() {
               )}
             />
 
-            <FormControl fullWidth error={!!errors.genre}>
+            <FormControl fullWidth error={!!errors.gender}>
               <InputLabel id="genre-label">Genero</InputLabel>
               <Controller
-                name="genre"
+                name="gender"
                 control={control}
                 rules={{
                   required: 'El género es requerido.',
@@ -260,7 +260,7 @@ function RegisterPage() {
                 render={({ field }) => (
                   <Select
                     {...field}
-                    labelId="genre-label"
+                    labelId="gender-label"
                     label="Genero"
                     sx={{ backgroundColor: '#fff', borderRadius: '10px' }}
                   >
@@ -272,11 +272,11 @@ function RegisterPage() {
                   </Select>
                 )}
               />
-              <FormHelperText>{errors.genre?.message}</FormHelperText>
+              <FormHelperText>{errors.gender?.message}</FormHelperText>
             </FormControl>
 
             <Controller
-              name="residence"
+              name="address"
               control={control}
               rules={{
                 required: 'El domicilio es requerido.',
@@ -286,8 +286,8 @@ function RegisterPage() {
                   {...field}
                   label="Domicilio"
                   variant="outlined"
-                  error={!!errors.residence}
-                  helperText={errors.residence?.message}
+                  error={!!errors.address}
+                  helperText={errors.address?.message}
                   fullWidth
                 />
               )}
