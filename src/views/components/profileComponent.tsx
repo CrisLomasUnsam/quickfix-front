@@ -9,7 +9,7 @@ import {
   MenuItem,
 } from '@mui/material' // Añadido Select, etc.
 import { StyledTextFieldInput } from './inputs/styledTextFieldInput'
-import { Genero } from '../../utils/enums'
+import { GenderEnum } from '../../utils/enums'
 
 export type UserProfileData = {
   name: string
@@ -47,7 +47,7 @@ const ProfileComponent = () => {
     defaultValues: profileData,
   })
 
-  const genreOptions = Object.values(Genero)
+  const genreOptions = Object.values(GenderEnum)
 
   //momentaneo, refactorizar a un hook o algoque lo maneje mejor
   // Combinar con use o useQuery para cargar datos de perfil talvez?
