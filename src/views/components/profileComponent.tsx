@@ -10,7 +10,8 @@ import {
 } from '@mui/material' // Añadido Select, etc.
 import { StyledTextFieldInput } from './inputs/styledTextFieldInput'
 import { Genero } from '../../utils/enums'
-export interface UserProfileData {
+
+export type UserProfileData = {
   name: string
   lastName: string
   birthDate: string
@@ -22,7 +23,7 @@ export interface UserProfileData {
 const initialMockData: UserProfileData = {
   name: 'Ana',
   lastName: 'García López',
-  birthDate: '1995-08-20',
+  birthDate: '20-08-1990',
   dni: '12345678Z',
   genre: 'Femenino',
   email: 'ana.garcia@email.com',
