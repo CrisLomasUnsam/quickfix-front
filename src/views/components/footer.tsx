@@ -50,7 +50,7 @@ export default function Footer({ isClient }: FooterProps) {
           <IconButton
             aria-label="profile"
             component={Link}
-            to={isClient ? '/client/profile' : '/pro/profile'}
+            to={isClient ? '/client/perfilFrame/profile' : '/pro/perfilFrame/profile'}
           >
             <PersonOutlineIcon sx={styles.iconStyle} />
           </IconButton>

@@ -7,7 +7,6 @@ function useLocationPublic() {
     location.pathname === '/userSelect' ||
     location.pathname === '/register' ||
     location.pathname === '/recovery-password'
-    //location.pathname === '/perfileFrame'
   return { isPublicRoute }
 }
 

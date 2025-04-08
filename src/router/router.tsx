@@ -11,17 +11,12 @@ import DummyClient from '../views/pages/dummyClient'
 import DummyProfessional from '../views/pages/dummyProfessional'
 
 export const router = createBrowserRouter([
-{
+  {
     element: <Frame isClient={false} />,
     children: [
       { path: '/', element: <Login /> },
       { path: 'userSelect', element: <UserSelectionPage /> },
       { path: 'register', element: <RegisterPage /> },
-      {
-        path: 'perfilFrame',
-        element: <PerfilTop />,
-        children: [{ path: 'profile', element: <ProfileComponent /> }],
-      },
     ],
   },
   {
@@ -32,7 +27,13 @@ export const router = createBrowserRouter([
         element: <ProtectedRoute isClientRoute={true} />,
         children: [
           { path: 'home', element: <DummyClient /> },
-          { path:'serchProfessional', element:<SerchProfessionalFrame/>},
+          { path: 'serchProfessional', element: <SerchProfessionalFrame /> },
+          { path: 'service', element: <div>DummyService</div> },
+          {
+            path: 'perfilFrame',
+            element: <PerfilTop />,
+            children: [{ path: 'profile', element: <ProfileComponent /> }],
+          },
         ],
       },
     ],
@@ -44,7 +45,14 @@ export const router = createBrowserRouter([
       {
         element: <ProtectedRoute isClientRoute={false} />,
         children: [
-          { path: 'dashboard', element: <DummyProfessional /> }
+          { path: 'dashboard', element: <DummyProfessional /> },
+          { path: 'service', element: <div>DummyService</div> },
+          { path: 'balance', element: <div>DummyBalance</div> },
+          {
+            path: 'perfilFrame',
+            element: <PerfilTop />,
+            children: [{ path: 'profile', element: <ProfileComponent /> }],
+          },
         ],
       },
     ],
