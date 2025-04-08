@@ -15,8 +15,10 @@ import dayjs from 'dayjs'
 import { Genero } from '../../utils/enums'
 import { FormContainer } from '../components/containers/formContainer'
 import { StyledTextFieldInput } from '../components/inputs/styledTextFieldInput'
+import { Gender } from '../../models/gender'
 
 function RegisterPage() {
+  
   type FormData = {
     email: string
     password: string
@@ -249,10 +251,10 @@ function RegisterPage() {
               )}
             />
 
-            <FormControl fullWidth error={!!errors.genre}>
+            <FormControl fullWidth error={!!errors.gender}>
               <InputLabel id="genre-label">Genero</InputLabel>
               <Controller
-                name="genre"
+                name="gender"
                 control={control}
                 rules={{
                   required: 'El género es requerido.',
@@ -264,7 +266,7 @@ function RegisterPage() {
                     label="Genero"
                     sx={{ backgroundColor: '#fff', borderRadius: '10px' }}
                   >
-                    {Object.values(Genero).map((value) => (
+                    {Object.values(Gender).map((value) => (
                       <MenuItem key={value} value={value}>
                         {value}
                       </MenuItem>
@@ -272,7 +274,7 @@ function RegisterPage() {
                   </Select>
                 )}
               />
-              <FormHelperText>{errors.genre?.message}</FormHelperText>
+              <FormHelperText>{errors.gender?.message}</FormHelperText>
             </FormControl>
 
             <Controller
