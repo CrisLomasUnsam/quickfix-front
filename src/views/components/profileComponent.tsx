@@ -48,8 +48,12 @@ const ProfileComponent = () => {
 
   const genreOptions = Object.values(Genero)
 
+  //momentaneo, refactorizar a un hook o algoque lo maneje mejor
+  // Combinar con use o useQuery para cargar datos de perfil talvez?
   useEffect(() => {
-    reset(profileData)
+    if(!isEditing) {
+      reset(profileData)
+    }
   }, [profileData, reset, isEditing])
 
   const handleModifyClick = () => {
@@ -77,6 +81,7 @@ const ProfileComponent = () => {
 
     console.log('Datos a guardar:', dataToSave)
 
+    //Simulación de guardado de datos, poner animacion? toastify o una sweetalert?
     setTimeout(() => {
       setIsLoading(false)
       setIsEditing(false)
