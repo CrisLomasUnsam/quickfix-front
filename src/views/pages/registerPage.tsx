@@ -1,12 +1,4 @@
-import {
-  Button,
-  FormControl,
-  FormHelperText,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-} from '@mui/material'
+import { Button, MenuItem, Typography } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider'
@@ -14,10 +6,9 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import dayjs from 'dayjs'
 import { FormContainer } from '../components/containers/formContainer'
 import { StyledTextFieldInput } from '../components/inputs/styledTextFieldInput'
-import { Genero } from '../../utils/enums'
+import { GenderEnum } from '../../utils/enums'
 
 function RegisterPage() {
-  
   type FormData = {
     email: string
     password: string
@@ -50,8 +41,7 @@ function RegisterPage() {
     },
   })
 
-    const genreOptions = Object.values(Genero)
-  
+  const genreOptions = Object.values(GenderEnum)
 
   const password = watch('password')
 
@@ -253,31 +243,30 @@ function RegisterPage() {
               )}
             />
 
-            <FormControl fullWidth error={!!errors.gender}>
-              <InputLabel id="genre-label">Genero</InputLabel>
-              <Controller
-                name="gender"
-                control={control}
-                rules={{
-                  required: 'El género es requerido.',
-                }}
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    labelId="gender-label"
-                    label="Genero"
-                    sx={{ backgroundColor: '#fff', borderRadius: '10px' }}
-                  >
-                    {genreOptions.map((value) => (
-                      <MenuItem key={value} value={value}>
-                        {value}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                )}
-              />
-              <FormHelperText>{errors.gender?.message}</FormHelperText>
-            </FormControl>
+            <Controller
+              name="gender"
+              control={control}
+              rules={{
+                required: 'El género es requerido.',
+              }}
+              render={({ field }) => (
+                <StyledTextFieldInput
+                  {...field}
+                  select
+                  label="Genero"
+                  variant="outlined"
+                  error={!!errors.gender}
+                  helperText={errors.gender?.message}
+                  fullWidth
+                >
+                  {genreOptions.map((option) => (
+                    <MenuItem key={option} value={option}>
+                      {option}
+                    </MenuItem>
+                  ))}
+                </StyledTextFieldInput>
+              )}
+            />
 
             <Controller
               name="address"
