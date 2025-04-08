@@ -12,10 +12,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider'
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import dayjs from 'dayjs'
-import { Genero } from '../../utils/enums'
 import { FormContainer } from '../components/containers/formContainer'
 import { StyledTextFieldInput } from '../components/inputs/styledTextFieldInput'
-import { Gender } from '../../models/gender'
+import { Genero } from '../../utils/enums'
 
 function RegisterPage() {
   
@@ -50,6 +49,9 @@ function RegisterPage() {
       address: '',
     },
   })
+
+    const genreOptions = Object.values(Genero)
+  
 
   const password = watch('password')
 
@@ -266,7 +268,7 @@ function RegisterPage() {
                     label="Genero"
                     sx={{ backgroundColor: '#fff', borderRadius: '10px' }}
                   >
-                    {Object.values(Gender).map((value) => (
+                    {genreOptions.map((value) => (
                       <MenuItem key={value} value={value}>
                         {value}
                       </MenuItem>
