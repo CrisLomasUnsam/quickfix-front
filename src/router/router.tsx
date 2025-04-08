@@ -8,18 +8,19 @@ import RegisterPage from '../views/pages/registerPage'
 import Frame from '../views/pages/frame'
 import DummyClient from '../views/pages/dummyClient'
 import DummyProfessional from '../views/pages/dummyProfessional'
+import CustomerHome from '../views/pages/customerHome'
 
 export const router = createBrowserRouter([
   { path: '/login', element: <Login /> },
-  { path:'/perfilFrame', element:<PerfilTop/> },
-  
+  { path: '/perfilFrame', element: <PerfilTop /> },
+  { path: '/customer/home', element: <CustomerHome /> },
+
   {
     element: <Frame isClient={false} />,
     children: [
       { path: '/', element: <Login /> },
       { path: 'userSelect', element: <UserSelectionPage /> },
       { path: 'register', element: <RegisterPage /> },
-      
     ],
   },
   {
@@ -30,9 +31,8 @@ export const router = createBrowserRouter([
         element: <ProtectedRoute isClientRoute={true} />,
         children: [
           { path: 'home', element: <DummyClient /> },
-          { path:'serchProfessional', element:<SerchProfessionalFrame/>},
+          { path: 'serchProfessional', element: <SerchProfessionalFrame /> },
         ],
-        
       },
     ],
   },
@@ -42,9 +42,7 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <ProtectedRoute isClientRoute={false} />,
-        children: [
-          { path: 'dashboard', element: <DummyProfessional /> }
-        ],
+        children: [{ path: 'dashboard', element: <DummyProfessional /> }],
       },
     ],
   },
