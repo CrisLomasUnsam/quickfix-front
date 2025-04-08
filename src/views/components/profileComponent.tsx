@@ -9,14 +9,14 @@ import {
   MenuItem,
 } from '@mui/material' // Añadido Select, etc.
 import { StyledTextFieldInput } from './inputs/styledTextFieldInput'
-import { GenderEnum } from '../../utils/enums'
+import { Gender } from '../../utils/enums'
 
 export type UserProfileData = {
   name: string
   lastName: string
   birthDate: string
   dni: string
-  genre: string
+  gender: string
   mail: string
   address: string
 }
@@ -25,7 +25,7 @@ const initialMockData: UserProfileData = {
   lastName: 'García López',
   birthDate: '20-08-1990',
   dni: '12345678Z',
-  genre: 'Femenino',
+  gender: 'Femenino',
   mail: 'ana.garcia@email.com',
   address: 'Madrid, España',
 }
@@ -47,7 +47,7 @@ const ProfileComponent = () => {
     defaultValues: profileData,
   })
 
-  const genreOptions = Object.values(GenderEnum)
+  const genreOptions = Object.values(Gender)
 
   //momentaneo, refactorizar a un hook o algoque lo maneje mejor
   // Combinar con use o useQuery para cargar datos de perfil talvez?
@@ -75,7 +75,7 @@ const ProfileComponent = () => {
     const dataToSave: UserProfileData = {
       ...profileData, // Comienza con todos los datos actuales (incluye no editables!)
       // Sobrescribe solo los campos que *son* editables, de momento solo email, residence y genre
-      genre: formData.genre, // Agregar mas generos?
+      gender: formData.gender, // Agregar mas generos?
       mail: formData.mail, // Por si lo pierde?
       address: formData.address, // se mudo?
     }
@@ -112,7 +112,7 @@ const ProfileComponent = () => {
       }
     }
 
-    if (name === 'genre' && isEditableThisField) {
+    if (name === 'gender' && isEditableThisField) {
       return (
         <Controller
           name={name}
@@ -189,7 +189,7 @@ const ProfileComponent = () => {
         {renderField('lastName', 'Apellidos', false, true)}
         {renderField('birthDate', 'Fecha de Nacimiento', false)}
         {renderField('dni', 'DNI', false)}
-        {renderField('genre', 'Género', true, true)}
+        {renderField('gender', 'Género', true, true)}
         {renderField('mail', 'Correo Electrónico', true, true)}
         {renderField('address', 'Domicilio', true, true)}
       </Grid>

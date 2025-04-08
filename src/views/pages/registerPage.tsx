@@ -6,7 +6,7 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker'
 import dayjs from 'dayjs'
 import { FormContainer } from '../components/containers/formContainer'
 import { StyledTextFieldInput } from '../components/inputs/styledTextFieldInput'
-import { GenderEnum } from '../../utils/enums'
+import { Gender } from '../../utils/enums'
 
 function RegisterPage() {
   type FormData = {
@@ -41,7 +41,7 @@ function RegisterPage() {
     },
   })
 
-  const genreOptions = Object.values(GenderEnum)
+  const genreOptions = Object.values(Gender)
 
   const password = watch('password')
 
