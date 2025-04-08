@@ -17,8 +17,8 @@ export type UserProfileData = {
   birthDate: string
   dni: string
   genre: string
-  email: string
-  residence: string
+  mail: string
+  address: string
 }
 const initialMockData: UserProfileData = {
   name: 'Ana',
@@ -26,8 +26,8 @@ const initialMockData: UserProfileData = {
   birthDate: '20-08-1990',
   dni: '12345678Z',
   genre: 'Femenino',
-  email: 'ana.garcia@email.com',
-  residence: 'Madrid, España',
+  mail: 'ana.garcia@email.com',
+  address: 'Madrid, España',
 }
 
 const ProfileComponent = () => {
@@ -76,8 +76,8 @@ const ProfileComponent = () => {
       ...profileData, // Comienza con todos los datos actuales (incluye no editables!)
       // Sobrescribe solo los campos que *son* editables, de momento solo email, residence y genre
       genre: formData.genre, // Agregar mas generos?
-      email: formData.email, // Por si lo pierde?
-      residence: formData.residence, // se mudo?
+      mail: formData.mail, // Por si lo pierde?
+      address: formData.address, // se mudo?
     }
 
     console.log('Datos a guardar:', dataToSave)
@@ -102,10 +102,10 @@ const ProfileComponent = () => {
       pattern?: { value: RegExp; message: string }
     } =
       isEditableThisField && isRequired
-        ? { required: `${label} es requerido` }
+        ? { required: `${label} es requerido.` }
         : {}
 
-    if (name === 'email' && isEditableThisField) {
+    if (name === 'mail' && isEditableThisField) {
       fieldRules.pattern = {
         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
         message: 'Dirección de correo inválida',
@@ -190,8 +190,8 @@ const ProfileComponent = () => {
         {renderField('birthDate', 'Fecha de Nacimiento', false)}
         {renderField('dni', 'DNI', false)}
         {renderField('genre', 'Género', true, true)}
-        {renderField('email', 'Correo Electrónico', true, true)}
-        {renderField('residence', 'Residencia', true, true)}
+        {renderField('mail', 'Correo Electrónico', true, true)}
+        {renderField('address', 'Domicilio', true, true)}
       </Grid>
 
       <Box
