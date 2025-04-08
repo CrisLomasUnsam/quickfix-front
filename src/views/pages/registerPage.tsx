@@ -15,8 +15,10 @@ import dayjs from 'dayjs'
 import { Genero } from '../../utils/enums'
 import { FormContainer } from '../components/containers/formContainer'
 import { StyledTextFieldInput } from '../components/inputs/styledTextFieldInput'
+import { Gender } from '../../models/gender'
 
 function RegisterPage() {
+  
   type FormData = {
     email: string
     password: string
@@ -264,7 +266,7 @@ function RegisterPage() {
                     label="Genero"
                     sx={{ backgroundColor: '#fff', borderRadius: '10px' }}
                   >
-                    {Object.values(Genero).map((value) => (
+                    {Object.values(Gender).map((value) => (
                       <MenuItem key={value} value={value}>
                         {value}
                       </MenuItem>
