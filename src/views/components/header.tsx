@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <Box sx={styles.headerContainer}>
       <img
-        src="/img/Logo.png"
+        src="/img/Logo.ico"
         style={{
           width: '110px',
           height: '55px',
