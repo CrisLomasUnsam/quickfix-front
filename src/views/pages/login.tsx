@@ -8,8 +8,7 @@ import { StyledTextFieldInput } from '../components/inputs/styledTextFieldInput'
 import { useAuth } from '../../hooks/useAuth'
 
 export default function Login() {
-
-  const {login} = useAuth()
+  const { login } = useAuth()
   const navigate = useNavigate()
 
   type FormData = {
@@ -22,7 +21,7 @@ export default function Login() {
     control,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormData>({
     defaultValues: {
       userType: '',
@@ -32,22 +31,18 @@ export default function Login() {
   })
 
   const onSubmit = (data: FormData) => {
-
     // Mock login
     const isClientLogin = data.userType === 'customer'
     const mockUserId = isClientLogin ? 1 : 2
     login(mockUserId, isClientLogin)
 
-
-
     console.log(data)
 
     if (isClientLogin) {
-      navigate('/client/home'); // Ruta para clientes
+      navigate('/client/home') // Ruta para clientes
     } else {
-      navigate('/pro/dashboard'); // Ruta para profesionales
+      navigate('/pro/dashboard') // Ruta para profesionales
     }
-
 
     reset()
   }
@@ -134,11 +129,13 @@ export default function Login() {
               />
             )}
           />
-          <Button variant="contained" type="submit">
+          <Button variant="contained" disabled={!isValid} type="submit">
             Ingresar
           </Button>
         </form>
-        <MuiLink sx={styles.link}>¿Olvidaste tu contraseña?</MuiLink>
+        <MuiLink sx={styles.link} component={RouterLink} to="/passwordRestore">
+          ¿Olvidaste tu contraseña?
+        </MuiLink>
         <MuiLink sx={styles.link} component={RouterLink} to="/userSelect">
           Registarse
         </MuiLink>
