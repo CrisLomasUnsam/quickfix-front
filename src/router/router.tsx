@@ -30,6 +30,7 @@ export const router = createBrowserRouter([
         children: [
           { path: 'home', element: <DummyClient /> },
           { path: 'serchProfessional', element: <SerchProfessionalFrame /> },
+
           { path: 'service', element: <div>DummyService</div> },
           {
             element: <PerfilTop />,
