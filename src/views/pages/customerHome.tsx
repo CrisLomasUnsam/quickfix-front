@@ -1,5 +1,5 @@
-import { Box, ButtonBase, InputAdornment, OutlinedInput } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
+import { Box, ButtonBase, Typography } from '@mui/material'
+import { useState } from 'react'
 import ConstructionIcon from '@mui/icons-material/Construction'
 import BuildIcon from '@mui/icons-material/Build'
 import PlumbingIcon from '@mui/icons-material/Plumbing'
@@ -8,6 +8,7 @@ import DesignServicesIcon from '@mui/icons-material/DesignServices'
 import FormatPaintIcon from '@mui/icons-material/FormatPaint'
 import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices'
 import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt'
+import SearchBarCard from '../components/containers/searchBarCard'
 
 export default function CustomerHome() {
   const iconList = [
@@ -23,28 +24,26 @@ export default function CustomerHome() {
     },
     { icon: <PsychologyAltIcon sx={styles.icon} />, label: 'Otro' },
   ]
+
+  const [searchTerm, setSearchTerm] = useState('')
+
+  const filteredIconList = iconList.filter((item) =>
+    item.label.toLowerCase().includes(searchTerm.toLowerCase()),
+  )
+
   return (
-    <Box>
-      <Box sx={styles.searchBar}>
-        <OutlinedInput
-          sx={{
-            ...styles.input,
-          }}
-          placeholder="buscar servicios..."
-          endAdornment={
-            <InputAdornment position="end">
-              <SearchIcon />
-            </InputAdornment>
-          }
-        />
-      </Box>
+    <Box sx={styles.container}>
+      <SearchBarCard
+        placeholder="Buscar servicio..."
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       <Box sx={styles.professionContainers}>
-        {iconList.map((item, index) => (
+        {filteredIconList.map((item, index) => (
           <Box sx={styles.iconLabel}>
-            <ButtonBase sx={styles.iconButton} key={index}>
+            <ButtonBase sx={styles.button} key={index}>
               {item.icon}
+              <Typography>{item.label}</Typography>
             </ButtonBase>
-            <Box>{item.label}</Box>
           </Box>
         ))}
       </Box>
@@ -53,39 +52,38 @@ export default function CustomerHome() {
 }
 
 const styles = {
-  searchBar: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '20px 0px 20px 0',
-  },
-
-  input: {
-    borderRadius: '10px',
-    width: '80%',
-    height: '50px',
+  container: {
+    margin: '30px 0px 30px 0',
   },
 
   professionContainers: {
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    gap: '80px',
-    margin: '0 20px 0 20px',
+    gap: '60px',
+    margin: '30px 20px 20px 30px',
   },
 
   iconLabel: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    border: '1px solid var(--primary-color)',
+    borderRadius: '15px',
   },
 
-  iconButton: {
-    width: '80px',
-    height: '80px',
+  button: {
+    display: 'flex',
+    flexDirection: 'column',
+    fontSize: '16px',
+    fontFamily: 'Roboto',
+    width: '100px',
+    height: '100px',
+    padding: '10px',
   },
 
   icon: {
     width: '50px',
-    height: '50px',
+    height: '60px',
   },
 }
