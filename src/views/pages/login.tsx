@@ -2,11 +2,16 @@ import { FormContainer } from '../components/containers/formContainer'
 import Typography from '@mui/material/Typography'
 import { Box, Button, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { Link as MuiLink } from '@mui/material'
-import { Link as RouterLink } from 'react-router'
+import { Link as RouterLink, useNavigate } from 'react-router'
 import { Controller, useForm } from 'react-hook-form'
 import { StyledTextFieldInput } from '../components/inputs/styledTextFieldInput'
+import { useAuth } from '../../hooks/useAuth'
 
 export default function Login() {
+
+  const {login} = useAuth()
+  const navigate = useNavigate()
+
   type FormData = {
     userType: string
     email: string
@@ -27,7 +32,23 @@ export default function Login() {
   })
 
   const onSubmit = (data: FormData) => {
+
+    // Mock login
+    const isClientLogin = data.userType === 'customer'
+    const mockUserId = isClientLogin ? 1 : 2
+    login(mockUserId, isClientLogin)
+
+
+
     console.log(data)
+
+    if (isClientLogin) {
+      navigate('/client/home'); // Ruta para clientes
+    } else {
+      navigate('/pro/dashboard'); // Ruta para profesionales
+    }
+
+
     reset()
   }
 

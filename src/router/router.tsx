@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router'
 import { ProtectedRoute } from './routes/protectedRoute'
 import PerfilTop from '../views/components/perfilUser/perfileFrame'
+import ProfileComponent from '../views/components/profileComponent'
 import SerchProfessionalFrame from '../views/pages/professionalSearchPage'
 import Login from '../views/pages/login'
 import UserSelectionPage from '../views/pages/userSelectionPage'
@@ -11,10 +12,6 @@ import DummyProfessional from '../views/pages/dummyProfessional'
 import CustomerHome from '../views/pages/customerHome'
 
 export const router = createBrowserRouter([
-  { path: '/login', element: <Login /> },
-  { path: '/perfilFrame', element: <PerfilTop /> },
-  { path: '/customer/home', element: <CustomerHome /> },
-
   {
     element: <Frame isClient={false} />,
     children: [
@@ -32,6 +29,12 @@ export const router = createBrowserRouter([
         children: [
           { path: 'home', element: <DummyClient /> },
           { path: 'serchProfessional', element: <SerchProfessionalFrame /> },
+
+          { path: 'service', element: <div>DummyService</div> },
+          {
+            element: <PerfilTop />,
+            children: [{ path: 'profile', element: <ProfileComponent /> }],
+          },
         ],
       },
     ],
@@ -42,7 +45,15 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <ProtectedRoute isClientRoute={false} />,
-        children: [{ path: 'dashboard', element: <DummyProfessional /> }],
+        children: [
+          { path: 'dashboard', element: <DummyProfessional /> },
+          { path: 'service', element: <div>DummyService</div> },
+          { path: 'balance', element: <div>DummyBalance</div> },
+          {
+            element: <PerfilTop />,
+            children: [{ path: 'profile', element: <ProfileComponent /> }],
+          },
+        ],
       },
     ],
   },
