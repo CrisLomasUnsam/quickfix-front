@@ -9,6 +9,7 @@ import RegisterPage from '../views/pages/registerPage'
 import Frame from '../views/pages/frame'
 import DummyClient from '../views/pages/dummyClient'
 import DummyProfessional from '../views/pages/dummyProfessional'
+import PasswordRestore from '../views/pages/passwordRestore'
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
       { path: '/', element: <Login /> },
       { path: 'userSelect', element: <UserSelectionPage /> },
       { path: 'register', element: <RegisterPage /> },
+      { path: 'passwordRestore', element: <PasswordRestore /> },
     ],
   },
   {
