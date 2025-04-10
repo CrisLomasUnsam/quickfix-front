@@ -6,7 +6,7 @@ function useLocationPublic() {
     location.pathname === '/' ||
     location.pathname === '/userSelect' ||
     location.pathname === '/register' ||
-    location.pathname === '/recovery-password'
+    location.pathname === '/passwordRestore'
   return { isPublicRoute }
 }
 
