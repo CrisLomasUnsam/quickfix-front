@@ -7,7 +7,6 @@ import Login from '../views/pages/login'
 import UserSelectionPage from '../views/pages/userSelectionPage'
 import RegisterPage from '../views/pages/registerPage'
 import Frame from '../views/pages/frame'
-import DummyClient from '../views/pages/dummyClient'
 import DummyProfessional from '../views/pages/dummyProfessional'
 import CustomerHome from '../views/pages/customerHome'
 
@@ -27,9 +26,8 @@ export const router = createBrowserRouter([
       {
         element: <ProtectedRoute isClientRoute={true} />,
         children: [
-          { path: 'home', element: <DummyClient /> },
+          { path: 'home', element: <CustomerHome /> },
           { path: 'serchProfessional', element: <SerchProfessionalFrame /> },
-
           { path: 'service', element: <div>DummyService</div> },
           {
             element: <PerfilTop />,
