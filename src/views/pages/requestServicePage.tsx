@@ -1,17 +1,14 @@
 import { Box, Button, OutlinedInput, Typography } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 
-interface props {
-  serviceLable: string
-}
+export default function RequestServicePage() {
+  const { label } = useParams()
+  const navigate = useNavigate()
 
-export default function RequestServicePage({ serviceLable }: props) {
   type FormData = {
     description: string
   }
-
-  const navigate = useNavigate()
 
   const {
     control,
@@ -36,11 +33,17 @@ export default function RequestServicePage({ serviceLable }: props) {
         Servicio:
       </Typography>
       <Typography sx={styles.service_container}>
-        {serviceLable ? serviceLable : 'Service'}
+        {label ? label : 'Service'}
       </Typography>
       <Typography>Detalle su necesidad:</Typography>
       <form
-        style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+          width: '100vw',
+          padding: '0 1rem 0 1rem',
+        }}
         onSubmit={handleSubmit(onSubmit)}
       >
         <Controller
@@ -76,6 +79,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     gap: '15px',
+    width: '100vw',
   },
 
   service_container: {
@@ -93,6 +97,6 @@ const styles = {
   input_container: {
     display: 'flex',
     height: '200px',
-    width: '300px',
+    width: '100%',
   },
 }
