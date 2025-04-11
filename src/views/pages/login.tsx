@@ -13,7 +13,7 @@ export default function Login() {
 
   type FormData = {
     userType: string
-    email: string
+    mail: string
     password: string
   }
 
@@ -25,7 +25,7 @@ export default function Login() {
   } = useForm<FormData>({
     defaultValues: {
       userType: '',
-      email: '',
+      mail: '',
       password: '',
     },
   })
@@ -95,20 +95,20 @@ export default function Login() {
             )}
           />
           <Controller
-            name="email"
+            name="mail"
             control={control}
             rules={{
-              required: 'email requerido',
+              required: 'mail requerido',
             }}
             render={({ field }) => (
               <StyledTextFieldInput
                 {...field}
-                type="email"
-                label="Email"
+                type="mail"
+                label="Mail"
                 variant="outlined"
-                error={!!errors.email}
-                helperText={errors.email?.message}
-                autoComplete="email"
+                error={!!errors.mail}
+                helperText={errors.mail?.message}
+                autoComplete="mail"
               />
             )}
           />

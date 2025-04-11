@@ -9,13 +9,14 @@ import { StyledTextFieldInput } from '../components/inputs/styledTextFieldInput'
 import { Gender } from '../../utils/enums'
 
 function RegisterPage() {
+
   type FormData = {
-    email: string
+    mail: string
     password: string
     confirmPassword: string
     name: string
     lastName: string
-    birthDate: string | null
+    dateBirth: string | null
     dni: string
     gender: string
     address: string
@@ -29,12 +30,12 @@ function RegisterPage() {
     watch,
   } = useForm<FormData>({
     defaultValues: {
-      email: '',
+      mail: '',
       password: '',
       confirmPassword: '',
       name: '',
       lastName: '',
-      birthDate: null,
+      dateBirth: null,
       dni: '',
       gender: '',
       address: '',
@@ -48,7 +49,7 @@ function RegisterPage() {
   const onSubmit = (data: FormData) => {
     const formattedData = {
       ...data,
-      birthDate: dayjs(data.birthDate).format('DD/MM/YYYY'),
+      birthDate: dayjs(data.dateBirth).format('DD/MM/YYYY'),
     }
     console.log(formattedData)
     reset()
@@ -63,7 +64,7 @@ function RegisterPage() {
               Registro
             </Typography>
             <Controller
-              name="email"
+              name="mail"
               control={control}
               rules={{
                 required: 'El email es requerido.',
@@ -79,8 +80,8 @@ function RegisterPage() {
                   type="email"
                   label="Email"
                   variant="outlined"
-                  error={!!errors.email}
-                  helperText={errors.email?.message}
+                  error={!!errors.mail}
+                  helperText={errors.mail?.message}
                   fullWidth
                   autoComplete="email"
                 />
@@ -178,7 +179,7 @@ function RegisterPage() {
             />
 
             <Controller
-              name="birthDate"
+              name="dateBirth"
               control={control}
               rules={{
                 required: 'La fecha de nacimiento es requerida',
@@ -202,8 +203,8 @@ function RegisterPage() {
                   format="DD/MM/YYYY"
                   slotProps={{
                     textField: {
-                      error: !!errors.birthDate,
-                      helperText: errors.birthDate?.message,
+                      error: !!errors.dateBirth,
+                      helperText: errors.dateBirth?.message,
                       sx: {
                         '& .MuiOutlinedInput-root': {
                           backgroundColor: '#fff',

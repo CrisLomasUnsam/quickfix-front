@@ -1,9 +1,9 @@
 export interface UserUpdateDto {
-    nombre: string;
-    apellido: string;
-    fechaNacimiento: string; 
+    name: string;
+    lastName: string;
+    dateBirth: string; 
     dni: string;
-    genero: string;
-    email: string;
-    domicilio: string;
+    gender: string;
+    mail: string;
+    address: string;
   }

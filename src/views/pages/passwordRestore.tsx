@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router'
 
 export default function PasswordRestore() {
   type FormData = {
-    email: string
-    confirmEmail: string
+    mail: string
+    confirmMail: string
   }
 
   const navigate = useNavigate()
@@ -20,14 +20,14 @@ export default function PasswordRestore() {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      email: '',
-      confirmEmail: '',
+      mail: '',
+      confirmMail: '',
     },
   })
 
-  const email = watch('email')
-  const confirmEmail = watch('confirmEmail')
-  const emailsMatch = email === confirmEmail
+  const mail = watch('mail')
+  const confirmMail = watch('confirmMail')
+  const emailsMatch = mail === confirmMail
 
   const onSubmit = (data: FormData) => {
     console.log(data)
@@ -46,46 +46,46 @@ export default function PasswordRestore() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Controller
-            name="email"
+            name="mail"
             control={control}
             rules={{
-              required: 'email requerido',
+              required: 'mail requerido',
             }}
             render={({ field }) => (
               <StyledTextFieldInput
                 {...field}
-                type="email"
-                label="Email"
+                type="mail"
+                label="Mail"
                 variant="outlined"
-                error={!!errors.email}
-                helperText={errors.email?.message}
-                autoComplete="email"
+                error={!!errors.mail}
+                helperText={errors.mail?.message}
+                autoComplete="mail"
               />
             )}
           />
           <Controller
-            name="confirmEmail"
+            name="confirmMail"
             control={control}
             rules={{
-              required: 'confirmar email requerido',
+              required: 'confirmar mail requerido',
               validate: (value) =>
-                value === watch('email') || 'Los emails no coinciden',
+                value === watch('mail') || 'Los mails no coinciden',
             }}
             render={({ field }) => (
               <StyledTextFieldInput
                 {...field}
-                type="confirmEmail"
-                label="Confirmar email"
+                type="confirmMail"
+                label="Confirmar mail"
                 variant="outlined"
-                error={!!errors.confirmEmail}
-                helperText={errors.confirmEmail?.message}
-                autoComplete="confirmEmail"
+                error={!!errors.confirmMail}
+                helperText={errors.confirmMail?.message}
+                autoComplete="mail"
               />
             )}
           />
           <Button
             variant="contained"
-            disabled={!emailsMatch || email === ''}
+            disabled={!emailsMatch || mail === ''}
             type="submit"
           >
             Enviar mail de recuperación

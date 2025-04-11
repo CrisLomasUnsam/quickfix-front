@@ -3,5 +3,5 @@ export interface ProfessionalDto {
     name: string;
     lastName: string;
     profession: string;
-    email: string;
+    mail: string;
 }
