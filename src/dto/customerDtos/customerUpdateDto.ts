@@ -1,5 +1,5 @@
 export interface CustomerUpdateDto {
-    name?: string;
-    lastName?: string;
-    mail?: string;
+    name?: string
+    lastName?: string
+    mail?: string
 }
