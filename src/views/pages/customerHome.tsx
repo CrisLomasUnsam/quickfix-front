@@ -2,6 +2,7 @@ import { Box, ButtonBase, Typography } from '@mui/material'
 import { useState } from 'react'
 import SearchBarCard from '../components/cards/searchBarCard'
 import { Professions } from '../../models/profession'
+import { Link as RouterLink } from 'react-router'
 
 export default function CustomerHome() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -11,7 +12,7 @@ export default function CustomerHome() {
   )
 
   return (
-    <Box sx={styles.container}>
+    <>
       <SearchBarCard
         placeholder="Buscar servicio..."
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -19,28 +20,30 @@ export default function CustomerHome() {
       <Box sx={styles.professionContainers}>
         {filteredIconList.map((item, index) => (
           <Box sx={styles.iconLabel}>
-            <ButtonBase sx={styles.button} key={index}>
+            <ButtonBase
+              sx={styles.button}
+              key={index}
+              component={RouterLink}
+              to={`/client/requestService/${item.label}`}
+            >
               {item.icon}
               <Typography>{item.label}</Typography>
             </ButtonBase>
           </Box>
         ))}
       </Box>
-    </Box>
+    </>
   )
 }
 
 const styles = {
-  container: {
-    margin: '30px 0px 30px 0',
-  },
-
   professionContainers: {
     display: 'flex',
+    marginTop: '60px',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    gap: '60px',
-    margin: '30px 20px 20px 30px',
+    gap: '40px',
+    paddingTop: '10px',
   },
 
   iconLabel: {
@@ -55,9 +58,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     fontSize: '16px',
-    fontFamily: 'Roboto',
     width: '100px',
     height: '100px',
-    padding: '10px',
   },
 }

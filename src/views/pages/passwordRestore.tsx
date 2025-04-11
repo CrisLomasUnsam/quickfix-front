@@ -42,7 +42,12 @@ export default function PasswordRestore() {
           Recuperar Contraseña
         </Typography>
         <form
-          style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
+            width: '100%',
+          }}
           onSubmit={handleSubmit(onSubmit)}
         >
           <Controller
@@ -84,6 +89,10 @@ export default function PasswordRestore() {
             )}
           />
           <Button
+            sx={{
+              flex: 1,
+              alignSelf: 'center',
+            }}
             variant="contained"
             disabled={!emailsMatch || mail === ''}
             type="submit"
