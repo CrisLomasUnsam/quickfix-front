@@ -1,6 +1,6 @@
 import { Box, ButtonBase, Typography } from '@mui/material'
 import { useState } from 'react'
-import SearchBarCard from '../components/searchBarCard'
+import SearchBarCard from '../components/cards/searchBarCard'
 import { Professions } from '../../models/profession'
 
 export default function CustomerHome() {
