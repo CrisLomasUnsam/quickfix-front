@@ -6,10 +6,16 @@ import { Link as RouterLink, useNavigate } from 'react-router'
 import { Controller, useForm } from 'react-hook-form'
 import { StyledTextFieldInput } from '../components/inputs/styledTextFieldInput'
 import { useAuth } from '../../hooks/useAuth'
+import { useState } from 'react'
+import InputAdornment from '@mui/material/InputAdornment'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import IconButton from '@mui/material/IconButton'
 
 export default function Login() {
   const { login } = useAuth()
   const navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false)
 
   type FormData = {
     userType: string
@@ -29,6 +35,20 @@ export default function Login() {
       password: '',
     },
   })
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show)
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault()
+  }
+
+  const handleMouseUpPassword = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault()
+  }
 
   const onSubmit = (data: FormData) => {
     // Mock login
@@ -54,7 +74,12 @@ export default function Login() {
           Iniciar sesión
         </Typography>
         <form
-          style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
+            width: '100%',
+          }}
           onSubmit={handleSubmit(onSubmit)}
         >
           <Controller
@@ -70,6 +95,7 @@ export default function Login() {
                     if (value !== null) field.onChange(value)
                   }}
                   aria-label="Tipo de usuario"
+                  sx={styles.toggleContainer}
                 >
                   <ToggleButton
                     sx={styles.toggleButton}
@@ -121,7 +147,23 @@ export default function Login() {
             render={({ field }) => (
               <StyledTextFieldInput
                 {...field}
-                type="password"
+                type={showPassword ? 'text' : 'password'}
+                slotProps={{
+                  input: {
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          onMouseUp={handleMouseUpPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  },
+                }}
                 label="Contraseña"
                 variant="outlined"
                 error={!!errors.password}
@@ -129,7 +171,15 @@ export default function Login() {
               />
             )}
           />
-          <Button variant="contained" disabled={!isValid} type="submit">
+          <Button
+            sx={{
+              flex: 1,
+              alignSelf: 'center',
+            }}
+            variant="contained"
+            disabled={!isValid}
+            type="submit"
+          >
             Ingresar
           </Button>
         </form>
@@ -145,6 +195,11 @@ export default function Login() {
 }
 
 const styles = {
+  toggleContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+
   toggleButton: {
     width: '150px',
     textTransform: 'none',
