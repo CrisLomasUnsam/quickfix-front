@@ -1,12 +1,12 @@
 import { Box, ButtonBase, Typography } from '@mui/material'
 import { useState } from 'react'
 import SearchBarCard from '../components/searchBarCard'
-import Professions from '../../models/professions'
+import { Professions } from '../../models/profession'
 
 export default function CustomerHome() {
   const [searchTerm, setSearchTerm] = useState('')
 
-  const filteredIconList = Professions().filter((item) =>
+  const filteredIconList = Professions.filter((item) =>
     item.label.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
