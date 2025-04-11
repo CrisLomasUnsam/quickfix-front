@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import Footer from '../components/footer'
 import Header from '../components/header'
 import { Outlet } from 'react-router'
@@ -10,29 +10,31 @@ type FrameProps = {
 
 export default function Frame({ isClient }: FrameProps) {
   return (
-    <Box sx={styles.container}>
+    <>
       <Header />
-      <Box sx={styles.outletContainer}>
-        <Outlet />
-      </Box>
-      <Footer isClient={isClient} />
-    </Box>
+      <Grid container spacing={3} sx={styles.container}>
+        <Box sx={styles.outletContainer}>
+          <Outlet />
+        </Box>
+        <Footer isClient={isClient} />
+      </Grid>
+    </>
   )
 }
 
 const styles = {
   container: {
-    display: 'flex',
     flexDirection: 'column',
     height: '100vh',
     position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   outletContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: '10vh 0 10vh 0',
-    flex: '1',
+    alingSelf: 'center',
+    margin: '10vh 0 10vh 0',
+    pading: '1rem',
+    overflowY: 'auto',
   },
 }
