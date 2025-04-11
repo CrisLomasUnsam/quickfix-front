@@ -9,7 +9,6 @@ import { StyledTextFieldInput } from '../components/inputs/styledTextFieldInput'
 import { Gender } from '../../utils/enums'
 
 function RegisterPage() {
-
   type FormData = {
     mail: string
     password: string

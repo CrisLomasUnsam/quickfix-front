@@ -27,11 +27,12 @@ const styles = {
   searchBar: {
     display: 'flex',
     justifyContent: 'center',
-    position: 'sticky',
-    top: 0,
+    position: 'fixed',
     backgroundColor: 'white',
     zIndex: '10',
-    padding: '20px 0 20px 0',
+    width: '100%',
+    height: '60px',
+    top: '10vh',
   },
 
   input: {

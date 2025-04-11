@@ -10,6 +10,8 @@ import Frame from '../views/pages/frame'
 import DummyProfessional from '../views/pages/dummyProfessional'
 import CustomerHome from '../views/pages/customerHome'
 import PasswordRestore from '../views/pages/passwordRestore'
+import RequestServicePage from '../views/pages/requestServicePage'
+import NotFoundPage from '../views/pages/notFoundPage'
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +31,7 @@ export const router = createBrowserRouter([
         element: <ProtectedRoute isClientRoute={true} />,
         children: [
           { path: 'home', element: <CustomerHome /> },
+          { path: 'requestService/:label', element: <RequestServicePage /> },
           { path: 'serchProfessional', element: <SerchProfessionalFrame /> },
           { path: 'service', element: <div>DummyService</div> },
           {
@@ -56,5 +59,9 @@ export const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ])
